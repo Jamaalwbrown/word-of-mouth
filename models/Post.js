@@ -13,7 +13,11 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  caption: {
+  summary: {
+    type: String,
+    required: true,
+  },
+  review: {
     type: String,
     required: true,
   },

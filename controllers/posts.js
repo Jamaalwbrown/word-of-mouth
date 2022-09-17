@@ -35,11 +35,12 @@ module.exports = {
         title: req.body.title,
         image: result.secure_url,
         cloudinaryId: result.public_id,
-        caption: req.body.caption,
+        summary: req.body.summary,
+        review: req.body.review,
         likes: 0,
         user: req.user.id,
       });
-      console.log("Post has been added!");
+      console.log("A review has been added!");
       res.redirect("/profile");
     } catch (err) {
       console.log(err);
