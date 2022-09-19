@@ -1,11 +1,14 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const Group = require("../models/Group");
 
 module.exports = {
   getProfile: async (req, res) => {
     try {
+      //We find the posts and groups created by the user and send them to the profile.ejs file
       const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      const groups = await Group.find({createdBy: req.user.id })
+      res.render("profile.ejs", { posts: posts, user: req.user, groups: groups, createdBy: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -30,7 +33,7 @@ module.exports = {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
-
+      console.log(req.body);
       await Post.create({
         title: req.body.title,
         image: result.secure_url,
