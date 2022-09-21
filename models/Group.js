@@ -13,15 +13,10 @@ const GroupSchema = new mongoose.Schema({
     type: Number,
     required: false,
   },
-  /*
-  members: {
-    type: [mongoose.Schema.Types.ObjectId],
+  members: [{
+    type: String,
     required: false,
-  },
-  moderators: {
-    type: [mongoose.Schema.Types.ObjectId],
-    ref: "User",
-  },*/
+  }],
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

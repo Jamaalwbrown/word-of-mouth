@@ -3,15 +3,16 @@ const Group = require("../models/Group");
 module.exports = {
     getGroup: async (req, res) => {
       try {
-        const groups = await Group.findById(req.params.id);
-        res.render("group.ejs", {group: groups, user: req.user });
+        //console.log(req);
+        const group = await Group.findById(req.params.id);
+        res.render("group.ejs", {group: group, user: req.user, msg: req.flash('message')});
       } catch (err) {
         console.log(err);
       }
     },
     createGroup: async (req, res) => {
       try {
-        console.log(req.body);
+        //console.log(req.body);
         await Group.create({
           groupName: req.body.groupName,
           groupDescription: req.body.groupDescription,
@@ -23,6 +24,23 @@ module.exports = {
         console.log(err);
       }
     },
+    addMember: async (req, res) => {
+      try {
+        console.log(req.body.username);
+        await Group.findOneAndUpdate(
+          {_id: req.params.id},
+          {
+            $push: { members: req.body.username}
+          }
+        );
+        console.log("member added is:" + req.body.username);
+        req.flash("message", `Success! You have added ${req.body.username}`);
+        res.redirect(`/groups/${req.params.id}`)
+      }
+      catch (err) {
+        console.log(err);
+      }
+    }
     /*
     getPost: async (req, res) => {
         try {

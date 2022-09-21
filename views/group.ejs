@@ -3,8 +3,18 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-              <p><strong>Group Name</strong>: <%= group.name %></p>
-              <p><strong>Group Description</strong>: <%= group.description %></p>
+            <% if (msg.length > 0) { %>
+                  <div class="alert alert-success"><%= msg %></div>
+              <% } %>
+              <p><strong>Group Name</strong>: <%= group.groupName %></p>
+              <p><strong>Group Description</strong>: <%= group.groupDescription %></p>
+              <form action="/groups/addMember/<%= group.id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Member Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Member</button>
+              </form>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
         </div>  
