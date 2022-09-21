@@ -3,11 +3,22 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-            <% if (msg.length > 0) { %>
-                  <div class="alert alert-success"><%= msg %></div>
+            <% if (messages.success) { %>
+                  <div class="alert alert-success"><%= messages.success %></div>
               <% } %>
+              <% if (messages.error) { %>
+                <div class="alert alert-danger"><%= messages.error %></div>
+            <% } %>
               <p><strong>Group Name</strong>: <%= group.groupName %></p>
               <p><strong>Group Description</strong>: <%= group.groupDescription %></p>
+              <p><strong>Group Members</strong></p>
+              <ul class="row list-unstyled">
+                <% for(var j=0; j<group.members.length; j++) {%>
+                  <li class="col-6 justify-content-between mt-5">
+                      <h5><%=group.members[j]%></hd>     
+                  </li>
+                <% } %>
+                </ul>
               <form action="/groups/addMember/<%= group.id %>?_method=PUT" method="POST">
                 <div class="mb-3">
                     <label for="username" class="form-label">Member Username</label>

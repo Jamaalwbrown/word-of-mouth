@@ -14,8 +14,8 @@ const GroupSchema = new mongoose.Schema({
     required: false,
   },
   members: [{
-    type: String,
-    required: false,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
   }],
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,

@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
+  groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}]
 });
 
 // Password hash middleware.
