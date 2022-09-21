@@ -58,6 +58,7 @@ module.exports = {
             $push: {members: user._id}
           }
         );
+        
         /*
         group.members.push({_id: user._id})
         group.save();*/
