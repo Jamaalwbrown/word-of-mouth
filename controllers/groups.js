@@ -6,7 +6,15 @@ module.exports = {
     getGroup: async (req, res) => {
       try {
         //console.log(req);
-        const group = await Group.findById(req.params.id);
+        const group = await Group.findById(req.params.id).populate(
+          {
+            path: "members", //populate members
+            populate: {
+              path: "posts" //in members/users, populate posts
+            }
+          }
+          );
+        console.log(group);
         res.render("group.ejs", {group: group, user: req.user});
       } catch (err) {
         console.log(err);
@@ -32,9 +40,16 @@ module.exports = {
       try {
         console.log(req.body.username);
 
-        //retreive the group we want to add the user to. Grab the user we want to add to the group
+        //retreive the group we want to add the user to.
         const group = await Group.findById(req.params.id);
-        const user = await User.find({userName: req.body.username});
+
+        // Grab the user we want to add to the group
+        //Check if the requested user exists. If not add to flash messages and redirect
+        const user = await User.findOne({userName: req.body.username})
+        if(!user) {
+          req.flash("error", `${req.body.username} does not exist as a user`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
 
         //debugging checks
         console.log('User we want to add is' + user)
@@ -42,9 +57,16 @@ module.exports = {
         console.log('Group we want to add user to is' + group);
 
         //Check if the user is already in the group we want to add them to
-        const groupCheck = await User.find({ $or: [{ userName: req.body.username }, {groups: req.params.id }] });
-        console.log('groupCheck is' + groupCheck);
+        const existingUser = await User.findOne({ $and: [{userName: req.body.username}, {groups: req.params.id }] });
+        console.log('existingUser is:' + existingUser);
 
+        //If user is already in group, flash error and then redirect to back to group page
+        if(existingUser) {
+          req.flash("error", `${req.body.username} already exists in this group`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
+
+        //Add the group id to user.groups and add the user id to group.members
         await User.findOneAndUpdate(
           {userName: req.body.username},
           {
@@ -53,36 +75,16 @@ module.exports = {
         );
 
         await Group.findOneAndUpdate(
-          {userName: req.body.username},
-          {
-            $push: {members: user._id}
-          }
-        );
-        
-        /*
-        group.members.push({_id: user._id})
-        group.save();*/
-
-        console.log("member added is:" + req.body.username);
-        req.flash("success", `Success! You have added ${req.body.username}`);
-        res.redirect(`/groups/${req.params.id}`)
-        //Extracts the groupmember from the members array in the mongoose groups model
-        /*let groupMember = group.members.find(username => username == req.body.username)
-        console.log('groupMember is:' + groupMember);
-        if() {
-          req.flash("error", `${req.body.username} already exists in this group`);
-          return res.redirect(`/groups/${req.params.id}`)
-        }
-        await Group.findOneAndUpdate(
           {_id: req.params.id},
           {
-            $push: { members: req.body.username}
+            $push: {members: user}
           }
         );
+
+        //Create success flash message and then redirect back to the group page
         console.log("member added is:" + req.body.username);
         req.flash("success", `Success! You have added ${req.body.username}`);
         res.redirect(`/groups/${req.params.id}`)
-        */
       }
       catch (err) {
         console.log(err);

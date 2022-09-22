@@ -15,7 +15,13 @@
               <ul class="row list-unstyled">
                 <% for(var j=0; j<group.members.length; j++) {%>
                   <li class="col-6 justify-content-between mt-5">
-                      <h5><%=group.members[j]%></hd>     
+                      <h5><%=group.members[j].userName%></h5> 
+                      <a href="/post/<%= group.members[j].posts[0].id%>">
+                        <h6><%=group.members[j].posts[0].title%></h6>
+                      </a>
+                      <a href="/post/<%= group.members[j].posts[0].id%>">
+                        <img class="img-fluid" src="<%= group.members[j].posts[0].image%>">
+                      </a>    
                   </li>
                 <% } %>
                 </ul>

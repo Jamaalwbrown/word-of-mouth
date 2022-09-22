@@ -5,6 +5,7 @@ const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
   email: { type: String, unique: true },
   password: String,
+  posts:  [{type: mongoose.Schema.Types.ObjectId, ref: "Post", default: ['632bf368f8d25c3a94be5795'] }], //revise default to get it working
   groups: [{type: mongoose.Schema.Types.ObjectId, ref: "Group"}]
 });
 

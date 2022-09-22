@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Group = require("../models/Group");
+const User = require("../models/User")
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -34,7 +35,7 @@ module.exports = {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
       console.log(req.body);
-      await Post.create({
+      const post = await Post.create({
         title: req.body.title,
         image: result.secure_url,
         cloudinaryId: result.public_id,
@@ -43,6 +44,13 @@ module.exports = {
         likes: 0,
         user: req.user.id,
       });
+
+      await User.findOneAndUpdate(
+        {_id: req.user.id},
+          {
+            $push: {posts: post}
+          }
+        );
       console.log("A review has been added!");
       res.redirect("/profile");
     } catch (err) {

@@ -89,6 +89,7 @@ exports.postSignup = (req, res, next) => {
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
+    posts: ['632bf368f8d25c3a94be5795'], //add default post to help with mongoose populate method in group controller
   });
 
   User.findOne(
