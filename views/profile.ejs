@@ -3,6 +3,12 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
+            <% if (messages.groupCreateSuccess) { %>
+                  <div class="alert alert-success"><%= messages.groupCreateSuccess %></div>
+              <% } %>
+              <% if (messages.groupCreateError) { %>
+                <div class="alert alert-danger"><%= messages.groupCreateError %></div>
+            <% } %>
               <p><strong>User Name</strong>: <%= user.userName %></p>
               <p><strong>Email</strong>: <%= user.email %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
@@ -69,7 +75,26 @@
       </div>
 
       <!-- We list the groups that are created by this user -->
+      
       <div class="col-6">
+        <h3>Groups you have created:</h3>
+        <ul class="row list-unstyled">
+        <% for(var j=0; j<groupsCreated.length; j++) {%>
+          <li class="col-6 justify-content-between mt-5">
+            <a href="/groups/<%= groupsCreated[j]._id%>">
+              <h3><%=groupsCreated[j].groupName%></h3>
+            </a>
+          </li>
+        <% } %>
+        </ul>
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        </div>  
+      </div>
+
+       <!-- We list the groups that the user is a part of -->
+      <div class="col-6">
+        <h3>Groups you are a member of:</h3>
         <ul class="row list-unstyled">
         <% for(var j=0; j<groups.length; j++) {%>
           <li class="col-6 justify-content-between mt-5">
@@ -82,7 +107,7 @@
         <div class="row justify-content-center mt-5">
           <a class="btn btn-primary" href="/feed">Return to Feed</a>
         </div>  
-      </div>    
+      </div>       
     </div>
   </div>
 </div>

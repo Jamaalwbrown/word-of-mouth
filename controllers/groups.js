@@ -22,14 +22,25 @@ module.exports = {
     },
     createGroup: async (req, res) => {
       try {
-        //console.log(req.body);
-        await Group.create({
+        const checkGroupName = await Group.findOne({groupName: req.body.groupName});
+
+        if (checkGroupName) {
+          req.flash("groupCreateError", `The group name ${req.body.groupName} is already taken`);
+          return res.redirect(`/profile`);
+        } 
+      //Create the request group based on the groupName
+       const group = await Group.create({
           groupName: req.body.groupName,
           groupDescription: req.body.groupDescription,
+          memberCount: 1,
           createdBy: req.user.id,
+          members: [req.user.id],
         });
         console.log("A group has been added!");
-        res.redirect("/profile");
+
+        //redirect to the group page
+        req.flash("groupCreateSuccess", `The group name ${req.body.groupName} has been created!`);
+        res.redirect("/groups/" + group._id);
       } catch (err) {
         console.log(err);
       }
@@ -88,6 +99,20 @@ module.exports = {
       }
       catch (err) {
         console.log(err);
+      }
+    },
+
+    //THIS DELETEPOST FUNCTION IS NOT DONE YET
+    deletePost: async (req, res) => {
+      try {
+        // Find group by id
+        let group = await Group.findById({ _id: req.params.id });
+        // Delete group from db
+        await Group.remove({ _id: req.params.id });
+        console.log("Deleted Post");
+        res.redirect("/profile");
+      } catch (err) {
+        res.redirect("/profile");
       }
     }
     /*

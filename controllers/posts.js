@@ -6,10 +6,17 @@ const User = require("../models/User")
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      //We find the posts and groups created by the user and send them to the profile.ejs file
+      //We find the posts created by the user
       const posts = await Post.find({ user: req.user.id });
-      const groups = await Group.find({createdBy: req.user.id })
-      res.render("profile.ejs", { posts: posts, user: req.user, groups: groups, createdBy: req.user });
+
+      //Find the groups created by the user
+      const groupsCreated = await Group.find({createdBy: req.user.id })
+
+      //Find the groups that the user is a member of
+      const groups = await Group.find({members: req.user.id})
+
+      //Send the User's posts, created groups, and groups that the user is a part of to the profile ejs
+      res.render("profile.ejs", { posts: posts, user: req.user, groupsCreated: groupsCreated, groups: groups, createdBy: req.user });
     } catch (err) {
       console.log(err);
     }

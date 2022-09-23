@@ -3,6 +3,9 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
+            <% if (messages.groupCreateSuccess) { %>
+                  <div class="alert alert-success"><%= messages.groupCreateSuccess %></div>
+              <% } %>
             <% if (messages.success) { %>
                   <div class="alert alert-success"><%= messages.success %></div>
               <% } %>
@@ -31,6 +34,24 @@
                     <input type="text" class="form-control" id="username" name="username">
                 </div>
                 <button type="submit" class="btn btn-primary">Add Member</button>
+              </form>
+
+
+              <form action="/groups/addMember/<%= group.id %>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Member Username</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <button type="submit" class="btn btn-primary">Add Member</button>
+              </form>
+
+              <%if(group.createdBy == user.id){ %>
+              <form
+                action="/groups/deleteGroup/<%= group.id %>?_method=DELETE"
+                method="POST"
+                class="col-3"
+              >
+                <button class="btn btn-primary" type="submit">Delete Group</button>
               </form>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
