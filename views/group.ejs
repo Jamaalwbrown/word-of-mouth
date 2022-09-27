@@ -15,19 +15,28 @@
               <p><strong>Group Name</strong>: <%= group.groupName %></p>
               <p><strong>Group Description</strong>: <%= group.groupDescription %></p>
               <p><strong>Group Members</strong></p>
-              <ul class="row list-unstyled">
+              <ul class="grid grid-cols-4">
                 <% for(var j=0; j<group.members.length; j++) {%>
-                  <li class="col-6 justify-content-between mt-5">
-                      <h5><%=group.members[j].userName%></h5> 
-                      <a href="/post/<%= group.members[j].posts[0].id%>">
-                        <h6><%=group.members[j].posts[0].title%></h6>
+                 <li class="mt-5">
+                   <div class="card w-96 bg-base-300 shadow-xl">
+                      <figure><img src="<%= group.members[j].posts[0].image%>" alt="review-card-image" /></figure>
+                     <div class="card-body">
+                       <a href="/post/<%= group.members[j].posts[0].id%>">
+                         <h2 class="card-title"><%=group.members[j].posts[0].title%></h2>
+                       </a>
+                       <a href="/post/<%= group.members[j].posts[0].id%>">
+                        <h3 class="card-title">By <%=group.members[j].userName%></h2>
                       </a>
-                      <a href="/post/<%= group.members[j].posts[0].id%>">
-                        <img class="img-fluid" src="<%= group.members[j].posts[0].image%>">
-                      </a>    
-                  </li>
-                <% } %>
-                </ul>
+                       <p><%=group.members[j].posts[0].summary%></p>
+                       <div class="card-actions justify-end">
+                         <a href="/post/<%= group.members[j].posts[0].id%>" class="btn btn-primary">Read Review</a>
+                       </div>
+                     </div>
+                   </div>
+                 </li>
+               <% } %>
+             </ul>
+              
               <form action="/groups/addMember/<%= group.id %>?_method=PUT" method="POST">
                 <div class="mb-3">
                     <label for="username" class="form-label">Member Username</label>
@@ -53,6 +62,7 @@
               >
                 <button class="btn btn-primary" type="submit">Delete Group</button>
               </form>
+              <%}%>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
         </div>  

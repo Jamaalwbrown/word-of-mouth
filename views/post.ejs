@@ -1,38 +1,62 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
-      <div class="row justify-content-between">
-        <form
-          class="col-1"
-          action="/post/likePost/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
-        </form>
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
-        </form>
-        <%}%>
+<div class="container mx-auto">
+  <div class="grid grid-rows-1 justify-items-center">
+    <div class="">
+      <div class="grid grid-rows-2 grid-cols-4">
+        <img class="img-fluid col-start-2 col-span-2 row-span-2" src="<%= post.image%>" />
+      </div>
+      <h2 class="font-bold text-4xl text-center"><%= post.title %></h2>
+      <div class="grid grid-cols-3 place-items-center">
+        <div class="col-span-1">
+          <form
+            class="object-right"
+            action="/post/likePost/<%= post.id %>?_method=PUT"
+            method="POST"
+          >
+            <button class="btn btn-primary fa fa-heart" type="submit"></button>
+          </form>
+          <h3 class="">Likes: <%= post.likes %></h3>
+        </div>
+        <div class="col-span-1 mt-5 text-center">
+          <p><%= post.summary %></p>
+          <p>By <%= user.userName %> on <%= post.createdAt.toDateString() %></p>
+        </div>
+        <div class="col-span-1 col-end-4">
+          <%if(post.user == user.id){ %>
+            <form
+              action="/post/deletePost/<%= post.id %>?_method=DELETE"
+              method="POST"
+              class="object-center"
+            >
+              <button class="btn btn-secondary fa fa-trash" type="submit"></button>
+              <h3 class="text-error">Delete Post</h3>
+            </form>
+            <%}%>
+        </div>
       </div>
     </div>
-    <div class="col-3 mt-5">
-      <h4>Summary</h4>
-      <p><%= post.summary %></p>
+    
+    <div class="divider"></div>
+
+    <!-- Review Body Goes Here -->
+    <div class="grid grid-cols-6">
+      <div class="col-span-1">
+
+      </div>
+      <div class="col-span-4">
+        <p>Lorem ipsum dolor sit amet. Eos temporibus quia et voluptatem voluptas est aperiam dolorem. Sed voluptas voluptate vel laborum ducimus aut omnis commodi qui nobis deserunt cum quia temporibus rem similique magnam.
+
+          Sit quia enim aut reprehenderit odio quo enim neque ex provident voluptates ut numquam soluta et expedita molestiae? Rem nihil voluptate sit accusamus illum quo nulla velit qui perferendis aspernatur et voluptatem optio vel expedita saepe nam laborum odit. Sed sunt necessitatibus 33 quibusdam iure id expedita odio id praesentium necessitatibus ad ipsa nisi in laboriosam inventore.
+          
+          Et maxime quidem ut dolor sunt qui fugit amet et corrupti officia est debitis sunt non beatae deserunt aut assumenda sequi! Id quas deserunt in voluptate consequatur sit sequi distinctio. Ut voluptatem magnam vel repellat magnam et tempore quaerat et quidem galisum et temporibus necessitatibus quo rerum rerum aut quaerat ullam.</p>
+        <p><%= post.review %></p>
+      </div>
+      <div class="col-span-1">
+
+      </div>
     </div>
-    <div class="col-3 mt-5">
-      <h4>Review</h4>
-      <p><%= post.review %></p>
-    </div>
-    <div class="col-6 mt-5">
+    
+    <div class="grid grid-cols-6 gap-4 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <a class="btn btn-primary" href="/feed">Return to Feed</a>
     </div>

@@ -103,13 +103,20 @@ module.exports = {
     },
 
     //THIS DELETEPOST FUNCTION IS NOT DONE YET
-    deletePost: async (req, res) => {
+    deleteGroup: async (req, res) => {
       try {
         // Find group by id
-        let group = await Group.findById({ _id: req.params.id });
+        let group = await Group.findById({ _id: req.params.id }, (err, result) => {
+          if (err) {
+            console.log(err)
+          }
+          else {
+            console.log("Result :", result);
+          }
+        });
         // Delete group from db
-        await Group.remove({ _id: req.params.id });
-        console.log("Deleted Post");
+        await Group.remove({ _id: req.params.id }, );
+        console.log("Deleted Group");
         res.redirect("/profile");
       } catch (err) {
         res.redirect("/profile");

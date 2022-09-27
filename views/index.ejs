@@ -1,11 +1,78 @@
 <%- include('partials/header') -%>
 
-<main class="container">
-    <div class="row justify-content-around mt-5">
-        <a href="/login" class="col-3 btn btn-primary"> Login</a>
-        <a href="/signup" class="col-3 btn btn-primary"> Signup</a>
+<main class="">
+
+
+  <!-- Hero section -->
+  <div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row">
+      <img src="https://placeimg.com/260/400/arch" class="max-w-sm rounded-lg shadow-2xl" />
+      <div>
+        <h1 class="text-5xl font-bold">Welcome to Word of Mouth!</h1>
+        <h2 class="text-2xl font-bold py-6">Share reviews with your friends, families, or any other close-knit community you are a part of.</h2>
+        <p class="py-6">Saw a good movie or ate at a good restaurant you like? Share the experince with your friends on Word of Mouth. The next time they are looking for recommendations they can come here to see what you thought</p>
+        <a href="/signup" class="btn btn-primary">Sign Up Now</a>
+      </div>
     </div>
+  </div>
+
+    <!-- <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row-reverse">
+          <div class="text-center lg:text-left">
+            <h1 class="text-5xl font-bold">Login now!</h1>
+            <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+          </div>
+          <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+            <div class="card-body">
+                  
+                 
+                <form action="/login" method="POST">
+                    <div class="form-control">
+                        <label class="label" for="exampleInputEmail1">
+                          <span class="label-text">Email</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            placeholder="email" 
+                            class="input input-bordered"
+                            id="exampleInputEmail1"
+                            aria-describedby="emailHelp"
+                            name="email" />
+                    </div>
+                    <div class="form-control">
+                        <label class="label" for="exampleInputPassword1">
+                          <span class="label-text">Password</span>
+                        </label>
+                        <input 
+                            type="password" 
+                            placeholder="password" 
+                            class="input input-bordered"
+                            name="password" 
+                            />
+                        <label class="label">
+                          <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+                        </label>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>    
+                </form>
+              
+              <div class="form-control mt-6">
+                <a href="/login" class="btn btn-primary">Login</a>
+              </div>
+              <div class="form-control mt-6">
+                <a href="/signup" class="btn btn-primary">Signup</a>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div> -->
+
 </main>
     
 
 <%- include('partials/footer') -%>
+
+<!-- <div class="grid grid-rows-1 grid-flow-col justify-around mt-5">
+        <a href="/login" class="col-span-2 btn btn-primary"> Login</a>
+        <a href="/signup" class="col-span-2 btn btn-primary"> Signup</a>
+    </div> -->

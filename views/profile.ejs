@@ -1,111 +1,141 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div>
-              <% if (messages.groupCreateError) { %>
-                <div class="alert alert-danger"><%= messages.groupCreateError %></div>
-            <% } %>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-          </div>
-          <div class="mt-5">
-            <h2>Add a review</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="summary" class="form-label">Summary</label>
-                <textarea class="form-control" id="summary" name="summary"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="review" class="form-label">Review</label>
-                <textarea class="form-control" id="review" name="review"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div>
-
-          <!-- Form for creating a new group -->
-          <div class="mt-5">
-            <h2>Create a Group</h2>
-            <form action="/groups/createGroup" method="POST">
-              <div class="mb-3">
-                  <label for="groupName" class="form-label">Group Name</label>
-                  <input type="text" class="form-control" id="groupName" name="groupName">
-              </div>
-              <div class="mb-3">
-                <label for="groupDescription" class="form-label">Group Description</label>
-                <textarea class="form-control" id="groupDescription" name="groupDescription"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="members" class="form-label">Members (enter usernames seperated by comma)</label>
-                <textarea class="form-control" id="members" name="members" placeholder="Example: Bob, Rick, James, Sarah..."></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-          </div>
-      </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <h3><%=posts[i].title%></h3>
-            </a>
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>
-
-      <!-- We list the groups that are created by this user -->
-      
-      <div class="col-6">
-        <h3>Groups you have created:</h3>
-        <ul class="row list-unstyled">
-        <% for(var j=0; j<groupsCreated.length; j++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/groups/<%= groupsCreated[j]._id%>">
-              <h3><%=groupsCreated[j].groupName%></h3>
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>
-
-       <!-- We list the groups that the user is a part of -->
-      <div class="col-6">
-        <h3>Groups you are a member of:</h3>
-        <ul class="row list-unstyled">
-        <% for(var j=0; j<groups.length; j++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/groups/<%= groups[j]._id%>">
-              <h3><%=groups[j].groupName%></h3>
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>       
+<div class="">
+  <div class="mt-5">
+    <div>
+      <% if (messages.groupCreateError) { %>
+        <div class="alert alert-danger"><%= messages.groupCreateError %></div>
+    <% } %>
+      <p><strong>User Name</strong>: <%= user.userName %></p>
+       <p><strong>Email</strong>: <%= user.email %></p>
     </div>
+
+      <div class="grid grid-cols-2 gap-4 m-4">
+
+        <!-- Form for submitting a review -->
+        <div class="mt-5">
+          <h2>Add a review</h2>
+          <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            
+            <div class="form-control w-full max-w-xs">
+              <label for="title" class="label">
+                <span class="label-text">Title</span>
+              </label>
+              <input type="text" placeholder="Review Title" class="input input-bordered input-primary w-full max-w-xs" id="title" name="title"/>
+            </div>
+
+            <div class="form-control">
+              <label for="summary" class="label">
+                <span class="label-text">Summary</span>
+              </label> 
+              <textarea class="textarea textarea-primary" placeholder="Review Summary" id="summary" name="summary"></textarea>
+            </div>
+
+            <div class="form-control">
+              <label for="review" class="label">
+                <span class="label-text">Review</span>
+              </label> 
+              <textarea class="textarea textarea-primary" placeholder="Review" id="review" name="review"></textarea>
+            </div>
+
+            <div class="form-control">
+              <label for="imgUpload" class="label">
+                <span class="label-text">Image</span>
+              </label> 
+              <input type="file" class="form-control" id="imageUpload" name="file"/>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2" value="Upload">Submit</button>
+          </form>
+        </div>
+
+         <!-- Form for creating a new group -->
+        <div class="mt-5">
+          <h2>Create a Group</h2>
+          <form action="/groups/createGroup" method="POST">
+
+            <div class="form-control w-full max-w-xs">
+              <label for="groupName" class="label">
+                <span class="label-text">Group Name</span>
+              </label>
+              <input type="text" placeholder="Group Name" class="input input-bordered input-primary w-full max-w-xs" id="groupName" name="groupName"/>
+            </div>
+
+            <div class="form-control">
+              <label for="groupDescription" class="label">
+                <span class="label-text">Group Description</span>
+              </label> 
+              <textarea class="textarea textarea-primary" placeholder="Group Description" id="groupDescription" name="groupDescription"></textarea>
+            </div>
+
+            <div class="form-control">
+              <label for="members" class="label">
+                <span class="label-text">Members (enter usernames seperated by comma)</span>
+              </label> 
+              <textarea class="textarea textarea-primary" placeholder="Example: Bob, Rick, James, Sarah..." id="members" name="members"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2">Submit</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="">
+         <!-- Showing the list of reviews/posts for the logged in user -->
+        <ul class="grid grid-cols-4">
+           <% for(var i=0; i<posts.length; i++) {%>
+            <li class="mt-5">
+              <div class="card w-96 bg-base-300 shadow-xl">
+                 <figure><img src="<%= posts[i].image%>" alt="review-card-image" /></figure>
+                <div class="card-body">
+                  <a href="/post/<%= posts[i]._id%>">
+                    <h2 class="card-title"><%=posts[i].title%></h2>
+                  </a>
+                  <p><%=posts[i].summary%></p>
+                  <div class="card-actions justify-end">
+                    <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Read Review</a>
+                  </div>
+                </div>
+              </div>
+            </li>
+          <% } %>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 mt-8">
+         <!-- We list the groups that are created by this user -->
+      
+        <div class="col-6">
+          <h3>Groups you have created:</h3>
+          <ul class="row list-unstyled">
+          <% for(var j=0; j<groupsCreated.length; j++) {%>
+            <li class="col-6 justify-content-between mt-5">
+              <a href="/groups/<%= groupsCreated[j]._id%>" class="link link-accent link-hover">
+                <h3><%=groupsCreated[j].groupName%></h3>
+              </a>
+            </li>
+          <% } %>
+          </ul>
+          <div class="row justify-content-center mt-5">
+            <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          </div>  
+        </div>
+
+        <!-- We list the groups that the user is a part of -->
+        <div class="col-6">
+          <h3>Groups you are a member of:</h3>
+          <ul class="row list-unstyled">
+          <% for(var j=0; j<groups.length; j++) {%>
+            <li class="col-6 justify-content-between mt-5">
+              <a href="/groups/<%= groups[j]._id%>" class="link link-accent link-hover">
+                <h3><%=groups[j].groupName%></h3>
+              </a>
+            </li>
+          <% } %>
+          </ul>
+          <div class="row justify-content-center mt-5">
+            <a class="btn btn-primary" href="/feed">Return to Feed</a>
+          </div>  
+        </div>       
+      </div>  
+           
   </div>
 </div>
 <%- include('partials/footer') -%>
