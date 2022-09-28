@@ -31,7 +31,7 @@ module.exports = {
   },
   getPost: async (req, res) => {
     try {
-      const post = await Post.findById(req.params.id)
+      const post = await Post.findById(req.params.id).populate("user");
       res.render("post.ejs", { post: post, user: req.user });
     } catch (err) {
       console.log(err);
@@ -95,7 +95,8 @@ module.exports = {
   showPosts: async (req, res) => {
     try {
       const posts = await Post.find({user: req.params.id}).sort({ createdAt: "desc" }).lean();
-      res.render("show.ejs", { posts: posts });
+      const user = await User.findOne({_id: req.params.id})
+      res.render("show.ejs", { posts: posts, user: user });
     } catch (err) {
       res.redirect("/groups")
     }

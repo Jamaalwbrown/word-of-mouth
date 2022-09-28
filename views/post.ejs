@@ -19,10 +19,10 @@
         </div>
         <div class="col-span-1 mt-5 text-center">
           <p><%= post.summary %></p>
-          <p>By <%= user.userName %> on <%= post.createdAt.toDateString() %></p>
+          <p>By <%= post.user.userName %> on <%= post.createdAt.toDateString() %></p>
         </div>
         <div class="col-span-1 col-end-4">
-          <%if(post.user == user.id){ %>
+          <%if(post.user.id == user.id){ %>
             <form
               action="/post/deletePost/<%= post.id %>?_method=DELETE"
               method="POST"
@@ -35,7 +35,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="divider"></div>
 
     <!-- Review Body Goes Here -->
