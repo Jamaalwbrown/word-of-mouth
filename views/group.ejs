@@ -7,11 +7,11 @@
 
         <div>
           <form action="/groups/addMember/<%= group.id %>?_method=PUT" method="POST">
-            <div class="mb-3">
-                <label for="username" class="form-label">Member Username</label>
-                <input type="text" class="form-control" id="username" name="username">
+            <div class="form-control w-full max-w-xs">
+                <label for="username" class="label">Member Username</label>
+                <input type="text" placeholder="Add Member" class="input input-bordered input-primary w-full max-w-xs" id="username" name="username">
             </div>
-            <button type="submit" class="btn btn-primary">Add Member</button>
+            <button type="submit" class="btn btn-primary mt-2">Add Member</button>
           </form>
 
           <%if(group.createdBy == user.id){ %>
@@ -20,7 +20,7 @@
             method="POST"
             class="col-3"
           >
-            <button class="btn btn-primary" type="submit">Delete Group</button>
+            <button class="btn btn-primary mt-2" type="submit">Delete Group</button>
           </form>
           <%}%>
         </div>
