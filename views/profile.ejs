@@ -37,6 +37,26 @@
               <textarea class="textarea textarea-primary" placeholder="Review" id="review" name="review"></textarea>
             </div>
 
+            <div class="form-control w-full max-w-xs">
+              <label for="category" class="label">
+                <span class="label-text">Category</span>
+              </label>
+              <select class="select select-primary" id="category" name="category">
+                <option disabled selected>Pick a category</option>
+                <option>Food and Drink</option>
+                <option>Experience</option>
+                <option>Gaming</option>
+                <option>Movie</option>
+                <option>Music</option>
+                <option>Podcast</option>
+                <option>Product</option>
+                <option>Restaurant</option>
+                <option>Service</option>
+                <option>TV Show</option>
+                <option>Venue</option>
+              </select>
+            </div>
+
             <div class="form-control">
               <label for="imgUpload" class="label">
                 <span class="label-text">Image</span>
@@ -88,6 +108,7 @@
                   <a href="/post/<%= posts[i]._id%>">
                     <h2 class="card-title"><%=posts[i].title%></h2>
                   </a>
+                  <div class="badge badge-secondary"><%= posts[i].category %></div>
                   <p><%=posts[i].summary%></p>
                   <div class="card-actions justify-end">
                     <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Read Review</a>
