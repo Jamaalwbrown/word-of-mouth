@@ -8,7 +8,7 @@ Word of Mouth is a full-stack application in which users can post reviews of wha
 
 ## Optimizations
 
-None at the moment
+None at the moment.
 
 ## Lessons Learned:
 
