@@ -1,0 +1,77 @@
+<%- include('partials/header') -%>
+<div class="">
+  <div class="mt-5">
+    <div>
+      <% if (messages.postEditError) { %>
+        <div class="alert alert-danger"><%= messages.postEditError %></div>
+    <% } %>
+      <p><strong>User Name</strong>: <%= post.user.userName %></p>
+       <p><strong>Email</strong>: <%= post.user.email %></p>
+    </div>
+
+      <div class="grid grid-cols-2 gap-4 m-4">
+
+        <!-- Form for submitting a review -->
+        <div class="mt-5">
+          <h2 class="text-3xl font-bold">Edit your review</h2>
+          <form action="/post/editPost/<%= post.id %>?_method=PUT" enctype="multipart/form-data" method="POST">
+            
+            <div class="form-control w-full max-w-xs">
+              <label for="title" class="label">
+                <span class="label-text">Title</span>
+              </label>
+              <input type="text" placeholder="Review Title" class="input input-bordered input-primary w-full max-w-xs" id="title" name="title" value="<%= post.title %>"/>
+            </div>
+
+            <div class="form-control">
+              <label for="summary" class="label">
+                <span class="label-text">Summary</span>
+              </label> 
+              <textarea class="textarea textarea-primary" placeholder="Review Summary" id="summary" name="summary"><%= post.summary %></textarea>
+            </div>
+
+            <div class="form-control">
+              <label for="review" class="label">
+                <span class="label-text">Review</span>
+              </label> 
+              <textarea class="textarea textarea-primary" placeholder="Review" id="review" name="review"><%= post.review %></textarea>
+            </div>
+
+            <div class="form-control w-full max-w-xs">
+              <label for="category" class="label">
+                <span class="label-text">Category</span>
+              </label>
+              <select class="select select-primary" id="category" name="category">
+                <option disabled selected>Pick a category</option>
+                <option value="Food and Drink" <%= post.category == 'Food and Drink' ? 'selected' : ''%>>Food and Drink</option>
+                <option value="Experience" <%= post.category == 'Experience' ? 'selected' : ''%>>Experience</option>
+                <option value="Gaming" <%= post.category == 'Gaming' ? 'selected' : ''%>>Gaming</option>
+                <option value="Movie" <%= post.category == 'Movie' ? 'selected' : ''%>>Movie</option>
+                <option value="Music" <%= post.category == 'Music' ? 'selected' : ''%>>Music</option>
+                <option value="Podcast" <%= post.category == 'Podcast' ? 'selected' : ''%>>Podcast</option>
+                <option value="Product" <%= post.category == 'Product' ? 'selected' : ''%>>Product</option>
+                <option value="Restaurant" <%= post.category == 'Restaurant' ? 'selected' : ''%>>Restaurant</option>
+                <option value="Service" <%= post.category == 'Service' ? 'selected' : ''%>>Service</option>
+                <option value="TV Show" <%= post.category == 'TV Show' ? 'selected' : ''%>>TV Show</option>
+                <option value="Venue" <%= post.category == 'Venue' ? 'selected' : ''%>>Venue</option>
+              </select>
+            </div>
+
+            <div class="mt-4">
+              <h3 class="font-bold">Current Image for Review (See Below to Change)</h3>
+              <img class="img-fluid" src="<%= post.image%>" />
+            </div>
+
+            <div class="form-control">
+              <label for="imgUpload" class="label">
+                <span class="label-text font-bold text-secondary">Change Image</span>
+              </label> 
+              <input type="file" class="form-control" id="imageUpload" name="file"/>
+            </div>
+            <button type="submit" class="btn btn-primary mt-2" value="Upload">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>       
+</div>       
+<%- include('partials/footer') -%>

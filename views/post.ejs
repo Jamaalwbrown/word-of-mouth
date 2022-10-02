@@ -44,11 +44,6 @@
 
       </div>
       <div class="col-span-4">
-        <p>Lorem ipsum dolor sit amet. Eos temporibus quia et voluptatem voluptas est aperiam dolorem. Sed voluptas voluptate vel laborum ducimus aut omnis commodi qui nobis deserunt cum quia temporibus rem similique magnam.
-
-          Sit quia enim aut reprehenderit odio quo enim neque ex provident voluptates ut numquam soluta et expedita molestiae? Rem nihil voluptate sit accusamus illum quo nulla velit qui perferendis aspernatur et voluptatem optio vel expedita saepe nam laborum odit. Sed sunt necessitatibus 33 quibusdam iure id expedita odio id praesentium necessitatibus ad ipsa nisi in laboriosam inventore.
-          
-          Et maxime quidem ut dolor sunt qui fugit amet et corrupti officia est debitis sunt non beatae deserunt aut assumenda sequi! Id quas deserunt in voluptate consequatur sit sequi distinctio. Ut voluptatem magnam vel repellat magnam et tempore quaerat et quidem galisum et temporibus necessitatibus quo rerum rerum aut quaerat ullam.</p>
         <p><%= post.review %></p>
       </div>
       <div class="col-span-1">
@@ -58,7 +53,9 @@
     
     <div class="grid grid-cols-6 gap-4 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+      <%if(post.user.id == user.id){ %>
+        <a class="btn btn-primary" href="/post/showEdit/<%= post.id %>">Edit Post</a>
+        <%}%>
     </div>
   </div>
 </div>

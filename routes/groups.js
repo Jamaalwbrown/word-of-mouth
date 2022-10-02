@@ -9,6 +9,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 //Group Routes
 
 router.get("/:id", ensureAuth, groupsController.getGroup);
+router.get("/", ensureAuth, groupsController.getGroups);
 router.post("/createGroup", groupsController.createGroup);
 router.put("/addMember/:id", groupsController.addMember);
 router.delete("/deleteGroup/:id", groupsController.deleteGroup);

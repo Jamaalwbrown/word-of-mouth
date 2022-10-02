@@ -93,6 +93,50 @@ module.exports = {
       res.redirect("/profile");
     }
   },
+  editPost: async (req, res) => {
+    try {
+
+      //Grab the post we're editing from the object
+      let post = await Post.findById({_id: req.params.id})
+
+      //reviewData will hold the data we for sure want to edit
+      const reviewData = {
+        title: req.body.title,
+        summary: req.body.summary,
+        review: req.body.review,
+        category: req.body.category
+      }
+
+      //if a new image was uploaded, then we destroy the old image and replace with the new one in cloudinary
+      //Add the new cloudinary url and id to the mongo model
+      if (req.file){
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+        const result = await cloudinary.uploader.upload(req.file.path);
+        reviewData.image = result.secure_url;
+        reviewData.cloudinaryId = result.public_id;
+      }
+      
+      //We find the post we chose to edit and update it in the model
+      await Post.findOneAndUpdate(
+        {_id: req.params.id},
+        reviewData
+      );
+      res.redirect(`/post/${req.params.id}`)
+    }
+    catch (err) {
+      res.redirect(`/post/showEdit/${req.params.id}`)
+    }
+  },
+  showEdit: async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id).populate("user");
+      console.log(req.body);
+      res.render("edit.ejs", {post: post});
+      console.log("A review is being edited!");
+    } catch (err) {
+      res.redirect(`/post/${req.params.id}`)
+    }
+  },
   showPosts: async (req, res) => {
     try {
       const posts = await Post.find({user: req.params.id}).sort({ createdAt: "desc" }).lean();

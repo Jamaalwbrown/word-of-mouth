@@ -3,6 +3,18 @@ const User = require("../models/User");
 const Post = require("../models/Post");
 
 module.exports = {
+    getGroups: async (req, res) => {
+      try {
+        //console.log(req);
+        const groupsCreated = await Group.find({createdBy: req.user.id })
+        const groups = await Group.find({members: req.user.id})
+        console.log(groups);
+        res.render("groups.ejs", { groupsCreated: groupsCreated, groups: groups });
+      }
+      catch (err) {
+        console.log(err);
+      }
+    },
     getGroup: async (req, res) => {
       try {
         //console.log(req);
@@ -114,8 +126,13 @@ module.exports = {
             console.log("Result :", result);
           }
         });
-        // Delete group from db
-        await Group.remove({ _id: req.params.id }, );
+        // Delete group id from each User's groups array
+        await User.find({groups: req.params.id}).updateMany(
+          { $pull: {groups: req.params.id}}
+        )
+
+         // Delete group from db
+        await Group.remove({ _id: req.params.id });
         console.log("Deleted Group");
         res.redirect("/profile");
       } catch (err) {

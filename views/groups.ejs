@@ -1,0 +1,34 @@
+<%- include('partials/header') -%>
+
+<!-- We list the groups that are created by this user -->     
+<div class="col-6">
+    <h3>Groups you have created:</h3>
+    <ul class="row list-unstyled">
+    <% for(var j=0; j<groupsCreated.length; j++) {%>
+      <li class="col-6 justify-content-between mt-5">
+        <a href="/groups/<%= groupsCreated[j]._id%>" class="link link-accent link-hover">
+          <h3><%=groupsCreated[j].groupName%></h3>
+        </a>
+      </li>
+    <% } %>
+    </ul> 
+  </div>
+
+  <!-- We list the groups that the user is a part of -->
+  <div class="col-6 mt-6">
+    <h3>Groups you are a member of:</h3>
+    <ul class="row list-unstyled">
+    <% for(var j=0; j<groups.length; j++) {%>
+      <li class="col-6 justify-content-between mt-5">
+        <a href="/groups/<%= groups[j]._id%>" class="link link-accent link-hover">
+          <h3><%=groups[j].groupName%></h3>
+        </a>
+      </li>
+    <% } %>
+    </ul>
+    <div class="row justify-content-center mt-5">
+      <a class="btn btn-primary" href="/feed">Return to Profile</a>
+    </div>  
+  </div>
+</div>
+<%- include('partials/footer') -%>       

@@ -49,6 +49,7 @@
                        <a href="/post/show/<%= group.members[j].id%>" class="link link-accent">
                         <h3 class="card-title text-base">By <%=group.members[j].userName%></h2>
                       </a>
+                      <div class="badge badge-secondary"><%= group.members[j].posts[0].category %></div>
                        <p><%=group.members[j].posts[0].summary%></p>
                        <div class="card-actions justify-end">
                          <a href="/post/<%= group.members[j].posts[0].id%>" class="btn btn-primary">Read Review</a>
