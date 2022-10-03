@@ -36,6 +36,35 @@
       </div>
     </div>
 
+    <div class="grid grid-rows-2 justify-items-center">
+      <div class="row-span-1 badge badge-secondary">
+        <%= post.category %>
+      </div>
+
+      <div class="row-span-1">
+        <ul class="rating rating-lg rating-half">
+          <% for(var j=1; j <= 10; j++) {%>
+            <% if (j % 2 == 0 && j <= post.rating) { %>
+              <li class="bg-yellow-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+          <% } %>
+
+            <% if (j % 2 != 0 && j <= post.rating) { %>
+              <li class="bg-yellow-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+          <% } %>
+
+            <% if (j % 2 == 0 && j > post.rating) { %>
+              <li class="bg-gray-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+          <% } %>
+
+            <% if (j % 2 != 0 && j > post.rating) { %>
+              <li class="bg-gray-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+          <% } %>
+
+          <% } %>
+        </ul>
+      </div>
+    </div>
+
     <div class="divider"></div>
 
     <!-- Review Body Goes Here -->
@@ -54,7 +83,7 @@
     <div class="grid grid-cols-6 gap-4 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <%if(post.user.id == user.id){ %>
-        <a class="btn btn-primary" href="/post/showEdit/<%= post.id %>">Edit Post</a>
+        <a class="btn btn-primary" href="/post/showEdit/<%= post.id %>">Edit Review</a>
         <%}%>
     </div>
   </div>

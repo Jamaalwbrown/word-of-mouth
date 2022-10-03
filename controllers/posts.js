@@ -49,6 +49,7 @@ module.exports = {
         summary: req.body.summary,
         review: req.body.review,
         category: req.body.category,
+        rating: req.body.rating,
         likes: 0,
         user: req.user.id,
       });
@@ -104,7 +105,8 @@ module.exports = {
         title: req.body.title,
         summary: req.body.summary,
         review: req.body.review,
-        category: req.body.category
+        category: req.body.category,
+        rating: req.body.rating
       }
 
       //if a new image was uploaded, then we destroy the old image and replace with the new one in cloudinary

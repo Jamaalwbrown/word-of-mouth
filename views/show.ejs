@@ -12,6 +12,33 @@
                <a href="/post/<%= posts[i]._id%>">
                  <h2 class="card-title"><%=posts[i].title%></h2>
                </a>
+
+              <!-- Review Badge and Rating  -->
+               <div class="flex gap-2">
+                <div class="badge badge-secondary"><%= posts[i].category %></div>
+                <div class="">
+                  <ul class="rating rating-lg rating-half">
+                    <% for(var j=1; j <= 10; j++) {%>
+                      <% if (j % 2 == 0 && j <= posts[i].rating) { %>
+                        <li class="bg-yellow-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                    <% } %>
+
+                      <% if (j % 2 != 0 && j <= posts[i].rating) { %>
+                        <li class="bg-yellow-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                    <% } %>
+
+                      <% if (j % 2 == 0 && j > posts[i].rating) { %>
+                        <li class="bg-gray-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                    <% } %>
+
+                      <% if (j % 2 != 0 && j > posts[i].rating) { %>
+                        <li class="bg-gray-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                    <% } %>
+
+                    <% } %>
+                  </ul>
+                </div>
+               </div>
                <p><%=posts[i].summary%></p>
                <div class="card-actions justify-end">
                  <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Read Review</a>

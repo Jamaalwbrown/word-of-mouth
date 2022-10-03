@@ -57,6 +57,25 @@
               </select>
             </div>
 
+            <div class="form-control w-full max-w-xs"> 
+              <label for="rating" class="label">
+                <span class="label-text">Rating</span>
+              </label>
+              <div class="rating rating-lg rating-half">
+                <input type="radio" name="rating" value="0" class="rating-hidden" />
+                <input type="radio" name="rating" value="1" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="2" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="3" class="bg-yellow-500 mask mask-star-2 mask-half-1" checked />
+                <input type="radio" name="rating" value="4" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="5" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="6" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="7" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="8" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="9" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+              </div>
+            </div>
+
             <div class="form-control">
               <label for="imgUpload" class="label">
                 <span class="label-text">Image</span>
@@ -108,7 +127,31 @@
                   <a href="/post/<%= posts[i]._id%>">
                     <h2 class="card-title"><%=posts[i].title%></h2>
                   </a>
-                  <div class="badge badge-secondary"><%= posts[i].category %></div>
+                  <div class="flex gap-2">
+                    <div class="badge badge-secondary"><%= posts[i].category %></div>
+                    <div class="">
+                      <ul class="rating rating-lg rating-half">
+                        <% for(var j=1; j <= 10; j++) {%>
+                          <% if (j % 2 == 0 && j <= posts[i].rating) { %>
+                            <li class="bg-yellow-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                        <% } %>
+
+                          <% if (j % 2 != 0 && j <= posts[i].rating) { %>
+                            <li class="bg-yellow-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                        <% } %>
+
+                          <% if (j % 2 == 0 && j > posts[i].rating) { %>
+                            <li class="bg-gray-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                        <% } %>
+
+                          <% if (j % 2 != 0 && j > posts[i].rating) { %>
+                            <li class="bg-gray-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                        <% } %>
+
+                        <% } %>
+                      </ul>
+                    </div>
+                  </div>
                   <p><%=posts[i].summary%></p>
                   <div class="card-actions justify-end">
                     <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Read Review</a>

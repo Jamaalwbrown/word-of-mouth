@@ -49,7 +49,31 @@
                        <a href="/post/show/<%= group.members[j].id%>" class="link link-accent">
                         <h3 class="card-title text-base">By <%=group.members[j].userName%></h2>
                       </a>
-                      <div class="badge badge-secondary"><%= group.members[j].posts[0].category %></div>
+
+                      <!-- Review Badge and Rating  -->
+                      <div>
+                        <div class="badge badge-secondary"><%= group.members[j].posts[0].category %></div>
+                        <ul class="rating rating-lg rating-half">
+                          <% for(var k=1; k <= 10; k++) {%>
+                            <% if (k % 2 == 0 && k <= group.members[j].posts[0].rating) { %>
+                              <li class="bg-yellow-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                          <% } %>
+  
+                            <% if (k % 2 != 0 && k <= group.members[j].posts[0].rating) { %>
+                              <li class="bg-yellow-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                          <% } %>
+  
+                            <% if (k % 2 == 0 && k > group.members[j].posts[0].rating) { %>
+                              <li class="bg-gray-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                          <% } %>
+  
+                            <% if (k % 2 != 0 && k > group.members[j].posts[0].rating) { %>
+                              <li class="bg-gray-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                          <% } %>
+  
+                          <% } %>
+                        </ul>
+                      </div>
                        <p><%=group.members[j].posts[0].summary%></p>
                        <div class="card-actions justify-end">
                          <a href="/post/<%= group.members[j].posts[0].id%>" class="btn btn-primary">Read Review</a>

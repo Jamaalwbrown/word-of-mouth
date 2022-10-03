@@ -57,6 +57,25 @@
               </select>
             </div>
 
+            <div class="form-control w-full max-w-xs"> 
+              <label for="rating" class="label">
+                <span class="label-text">Rating</span>
+              </label>
+              <div class="rating rating-lg rating-half">
+                <input type="radio" name="rating" value="0" class="rating-hidden" />
+                <input type="radio" name="rating" value="1" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="2" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="3" class="bg-yellow-500 mask mask-star-2 mask-half-1" checked />
+                <input type="radio" name="rating" value="4" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="5" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="6" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="7" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="8" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                <input type="radio" name="rating" value="9" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                <input type="radio" name="rating" value="10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+              </div>
+            </div>
+
             <div class="mt-4">
               <h3 class="font-bold">Current Image for Review (See Below to Change)</h3>
               <img class="img-fluid" src="<%= post.image%>" />
