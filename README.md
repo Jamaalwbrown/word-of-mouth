@@ -18,3 +18,24 @@ Organizing users into groups one of the biggest barriers in the development of t
 ## Package dependencies
 bcrypt, cloudinary, connect-mongo, dotenv, ejs, express, express-flash, express-session, method-override, mongodb, mongoose, morgan, multer, nodemon, passport, passport-local, validator, xmlhttprequest, tailwindcss, daisyui
 
+---
+
+## Using this app yourself
+
+### **Installation**
+
+1. Fork this repository and clone it down to your machine
+2. Open terminal in directory and `npm install`
+3. Add the list of things below to your `.env` file
+4. To run the application type `npm start` in your terminal
+
+
+
+### Things to add
+
+- Create a `.env` file in config folder and add the following as `key = value`
+  - PORT = 2121 (can be any port example: 3000)
+  - DB_STRING = `your database URI`
+  - CLOUD_NAME = `your cloudinary cloud name`
+  - API_KEY = `your cloudinary api key`
+  - API_SECRET = `your cloudinary api secret`
