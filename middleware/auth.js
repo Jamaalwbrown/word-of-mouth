@@ -3,6 +3,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     } else {
+      req.flash("authenticateErr", `User is not logged in. Please Login or Signup`);
       res.redirect("/");
     }
   },

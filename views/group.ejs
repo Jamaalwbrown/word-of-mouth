@@ -1,5 +1,36 @@
 <%- include('partials/header') -%>
-<div class="grid grid-cols-12">
+<div>
+  <% if (messages.groupCreateSuccess) { %>
+    <div class="alert alert-success shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span><%= messages.groupCreateSuccess %></span>
+      </div>
+    </div>
+  <% } %>
+
+  <% if (messages.success) { %>
+    <div class="alert alert-success shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span><%= messages.success %></span>
+      </div>
+    </div>
+  <% } %>
+
+  <% if (messages.error) { %>
+    <div class="alert alert-error shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span><%= messages.error %></span>
+      </div>
+    </div>
+  <% } %>
+  <h3 class="text-2xl">Account Info</h3>
+  <p><strong>User Name</strong>: <%= user.userName %></p>
+  <p><strong>Email</strong>: <%= user.email %></p>
+</div>
+<div class="grid grid-cols-12 mt-4">
 
   <!-- List of Reviews by each member of group. One for each member -->
   <div class="col-span-10">
@@ -25,19 +56,10 @@
           <%}%>
         </div>
           <div>
-            <% if (messages.groupCreateSuccess) { %>
-                  <div class="alert alert-success"><%= messages.groupCreateSuccess %></div>
-              <% } %>
-            <% if (messages.success) { %>
-                  <div class="alert alert-success"><%= messages.success %></div>
-              <% } %>
-              <% if (messages.error) { %>
-                <div class="alert alert-danger"><%= messages.error %></div>
-            <% } %>
               <p><strong>Group Name</strong>: <%= group.groupName %></p>
               <p><strong>Group Description</strong>: <%= group.groupDescription %></p>
              
-              <ul class="grid grid-cols-3 place-items-center">
+              <ul class="grid lg:grid-cols-2 2xl:grid-cols-3 place-items-center">
                 <% for(var j=0; j<group.members.length; j++) {%>
                  <li class="mt-5">
                    <div class="card w-96 bg-base-300 shadow-xl">

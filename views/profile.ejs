@@ -3,13 +3,20 @@
   <div class="mt-5">
     <div>
       <% if (messages.groupCreateError) { %>
-        <div class="alert alert-danger"><%= messages.groupCreateError %></div>
-    <% } %>
+        <div class="alert alert-error shadow-lg">
+          <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            <span><%= messages.groupCreateError %></span> 
+          </div>
+        </div>
+      <% } %>
+
+      <h3 class="text-2xl">Account Info</h3>
       <p><strong>User Name</strong>: <%= user.userName %></p>
-       <p><strong>Email</strong>: <%= user.email %></p>
+      <p><strong>Email</strong>: <%= user.email %></p>
     </div>
 
-      <div class="grid grid-cols-2 gap-4 m-4">
+      <div class="grid md:grid-cols-2 gap-4 m-4">
 
         <!-- Form for submitting a review -->
         <div class="mt-5">
@@ -95,22 +102,25 @@
               <label for="groupName" class="label">
                 <span class="label-text">Group Name</span>
               </label>
-              <input type="text" placeholder="Group Name" class="input input-bordered input-primary w-full max-w-xs" id="groupName" name="groupName"/>
+              <input type="text" placeholder="Ex: OG Squad" class="input input-bordered input-primary w-full max-w-xs" id="groupName" name="groupName"/>
             </div>
 
             <div class="form-control">
               <label for="groupDescription" class="label">
                 <span class="label-text">Group Description</span>
               </label> 
-              <textarea class="textarea textarea-primary" placeholder="Group Description" id="groupDescription" name="groupDescription"></textarea>
+              <textarea class="textarea textarea-primary" placeholder="Ex: Group for best friends to share our reviews" id="groupDescription" name="groupDescription"></textarea>
+              <label class="label">
+                <span class="label-text-alt"><strong>You will be able to add members once the group is created</strong></span>
+              </label> 
             </div>
 
-            <div class="form-control">
+            <!-- <div class="form-control">
               <label for="members" class="label">
                 <span class="label-text">Members (enter usernames seperated by comma)</span>
               </label> 
               <textarea class="textarea textarea-primary" placeholder="Example: Bob, Rick, James, Sarah..." id="members" name="members"></textarea>
-            </div>
+            </div> -->
             <button type="submit" class="btn btn-primary mt-2">Submit</button>
           </form>
         </div>
@@ -118,10 +128,10 @@
 
       <div class="">
          <!-- Showing the list of reviews/posts for the logged in user -->
-        <ul class="grid grid-cols-4 place-items-center">
+        <ul class="grid md:grid-cols-2 2xl:grid-cols-4 place-items-center">
            <% for(var i=0; i<posts.length; i++) {%>
             <li class="mt-5">
-              <div class="card w-96 bg-base-300 shadow-xl">
+              <div class="card w-96 2xl:w-80 bg-base-300 shadow-xl">
                  <figure><img src="<%= posts[i].image%>" alt="review-card-image" /></figure>
                 <div class="card-body">
                   <a href="/post/<%= posts[i]._id%>">
@@ -163,42 +173,44 @@
         </ul>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 mt-8">
+      <!-- <div class="grid grid-cols-2 gap-4 mt-8"> -->
          <!-- We list the groups that are created by this user -->
       
-        <div class="col-6">
+        <!-- <div class="col-6">
           <h3>Groups you have created:</h3>
           <ul class="row list-unstyled">
-          <% for(var j=0; j<groupsCreated.length; j++) {%>
+          <% /* for(var j=0; j<groupsCreated.length; j++) { */ %> 
             <li class="col-6 justify-content-between mt-5">
-              <a href="/groups/<%= groupsCreated[j]._id%>" class="link link-accent link-hover">
-                <h3><%=groupsCreated[j].groupName%></h3>
+              <a href="/groups/<%= /* groupsCreated[j]._id */ %>" class="link link-accent link-hover">
+                <h3><%= /* groupsCreated[j].groupName */ %></h3>
               </a>
             </li>
-          <% } %>
+          <% /* } */%>
           </ul>
           <div class="row justify-content-center mt-5">
             <a class="btn btn-primary" href="/feed">Return to Feed</a>
           </div>  
-        </div>
+        </div> -->
 
         <!-- We list the groups that the user is a part of -->
-        <div class="col-6">
+
+        <!-- <div class="col-6">
           <h3>Groups you are a member of:</h3>
           <ul class="row list-unstyled">
-          <% for(var j=0; j<groups.length; j++) {%>
+          <% /* for(var j=0; j<groups.length; j++) { */%>
             <li class="col-6 justify-content-between mt-5">
-              <a href="/groups/<%= groups[j]._id%>" class="link link-accent link-hover">
-                <h3><%=groups[j].groupName%></h3>
+              <a href="/groups/ <% /*= groups[j]._id */%>" class="link link-accent link-hover">
+                <h3><%= /*groups[j].groupName */%></h3>
               </a>
             </li>
-          <% } %>
+          <% /* } */ %>
           </ul>
           <div class="row justify-content-center mt-5">
             <a class="btn btn-primary" href="/feed">Return to Feed</a>
-          </div>  
-        </div>       
-      </div>  
+          </div>   
+        </div>   -->
+
+      <!-- </div>   -->
            
   </div>
 </div>

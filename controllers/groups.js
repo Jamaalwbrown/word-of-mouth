@@ -9,7 +9,7 @@ module.exports = {
         const groupsCreated = await Group.find({createdBy: req.user.id })
         const groups = await Group.find({members: req.user.id})
         console.log(groups);
-        res.render("groups.ejs", { groupsCreated: groupsCreated, groups: groups });
+        res.render("groups.ejs", { groupsCreated: groupsCreated, groups: groups, user: req.user });
       }
       catch (err) {
         console.log(err);

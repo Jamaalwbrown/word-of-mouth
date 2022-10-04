@@ -1,7 +1,12 @@
 <%- include('partials/header') -%>
+<div>
+  <h3 class="text-2xl">Account Info</h3>
+  <p><strong>User Name</strong>: <%= user.userName %></p>
+  <p><strong>Email</strong>: <%= user.email %></p>
+</div>
 
 <!-- We list the groups that are created by this user -->     
-<div class="col-6">
+<div class="col-6 mt-6">
     <h3>Groups you have created:</h3>
     <ul class="row list-unstyled">
     <% for(var j=0; j<groupsCreated.length; j++) {%>
@@ -27,7 +32,7 @@
     <% } %>
     </ul>
     <div class="row justify-content-center mt-5">
-      <a class="btn btn-primary" href="/feed">Return to Profile</a>
+      <a class="btn btn-primary" href="/profile">Return to Profile</a>
     </div>  
   </div>
 </div>

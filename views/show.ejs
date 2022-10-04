@@ -3,10 +3,10 @@
     <div class="">
       <h1 class="text-center text-5xl text-info">Reviews by: <%= user.userName %></h1>
       <!-- Showing the list of reviews/posts for the logged in user -->
-     <ul class="grid grid-cols-4 place-items-center">
+     <ul class="grid md:grid-cols-2 2xl:grid-cols-4 place-items-center">
         <% for(var i=0; i<posts.length; i++) {%>
          <li class="mt-5">
-           <div class="card w-96 bg-base-300 shadow-xl">
+           <div class="card w-96 2xl:w-80 bg-base-300 shadow-xl">
               <figure><img src="<%= posts[i].image%>" alt="review-card-image" /></figure>
              <div class="card-body">
                <a href="/post/<%= posts[i]._id%>">

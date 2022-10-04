@@ -123,9 +123,12 @@ module.exports = {
         {_id: req.params.id},
         reviewData
       );
+
+      req.flash("postEditSuccess", `Success! Your review has been edited!`);
       res.redirect(`/post/${req.params.id}`)
     }
     catch (err) {
+      req.flash("postEditSuccess", `There was problem. Please try again`);
       res.redirect(`/post/showEdit/${req.params.id}`)
     }
   },
