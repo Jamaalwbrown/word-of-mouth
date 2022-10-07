@@ -25,7 +25,7 @@ module.exports = {
               path: "posts" //in members/users, populate posts
             }
           }
-          );
+          ).lean();
         console.log(group);
         res.render("group.ejs", {group: group, user: req.user});
       } catch (err) {
@@ -35,6 +35,7 @@ module.exports = {
     createGroup: async (req, res) => {
       try {
         const checkGroupName = await Group.findOne({groupName: req.body.groupName});
+        const user = await User.findOne({_id: req.user});
 
         if (checkGroupName) {
           req.flash("groupCreateError", `The group name ${req.body.groupName} is already taken`);
@@ -48,6 +49,15 @@ module.exports = {
           createdBy: req.user.id,
           members: [req.user.id],
         });
+
+        //Add the group id to user.groups for the user creating the group
+        await User.findOneAndUpdate(
+          {_id: req.user},
+          {
+            $push: {groups: group._id}
+          }
+        );
+
         console.log("A group has been added!");
 
         //redirect to the group page

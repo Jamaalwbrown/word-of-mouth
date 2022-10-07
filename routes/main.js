@@ -14,5 +14,7 @@ router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);
 router.get("/signup", authController.getSignup);
 router.post("/signup", authController.postSignup);
+router.get("/getdeleteAcct", ensureAuth, postsController.getDeleteAcct);
+router.delete("/deleteAcct", ensureAuth, authController.deleteAcct);
 
 module.exports = router;

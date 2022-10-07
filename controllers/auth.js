@@ -118,3 +118,24 @@ exports.postSignup = (req, res, next) => {
     }
   );
 };
+
+exports.deleteAcct = (req, res) => {
+  if(!(req.body.email && req.body.userName)) {
+    req.flash("deleteFail", "The credentials you entered were incorrect. Try again");
+    return res.redirect('/getDeleteAcct');
+  }
+  User.deleteOne(
+    { $and: [{ email: req.body.email }, { userName: req.body.userName }] },
+    (err) => {
+      if (err) {
+        req.flash("deleteInfo","Something went wrong. Please enter your information again");
+        console.log('We hit the error')
+        return res.redirect('/getDeleteAcct');
+      }
+
+      req.flash("deleteSuccess", "Your account has been deleted. You must signup again to access Word of Mouth");
+      console.log('Deleted Account');
+      return res.redirect('/');
+    }
+  );
+}

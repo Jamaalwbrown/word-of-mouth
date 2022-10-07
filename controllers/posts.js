@@ -61,6 +61,7 @@ module.exports = {
           }
         );
       console.log("A review has been added!");
+      req.flash("postCreateSuccess", `Success! Your new review has been added!`);
       res.redirect("/profile");
     } catch (err) {
       console.log(err);
@@ -149,6 +150,13 @@ module.exports = {
       res.render("show.ejs", { posts: posts, user: user });
     } catch (err) {
       res.redirect("/groups")
+    }
+  },
+  getDeleteAcct: async (req, res) => {
+    try {
+      res.render("deleteAcct.ejs", {user: req.user});
+    } catch (err) {
+      res.redirect("/profile");
     }
   }
 };
