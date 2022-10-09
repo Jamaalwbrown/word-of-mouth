@@ -1,6 +1,8 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const Post = require("../models/Post");
+const Group = require("../models/Group");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -121,6 +123,7 @@ exports.postSignup = (req, res, next) => {
 
 exports.deleteAcct = (req, res) => {
   if(!(req.body.email && req.body.userName)) {
+    console.log(req.user._id);
     req.flash("deleteFail", "The credentials you entered were incorrect. Try again");
     return res.redirect('/getDeleteAcct');
   }
@@ -133,9 +136,23 @@ exports.deleteAcct = (req, res) => {
         return res.redirect('/getDeleteAcct');
       }
 
-      req.flash("deleteSuccess", "Your account has been deleted. You must signup again to access Word of Mouth");
-      console.log('Deleted Account');
-      return res.redirect('/');
-    }
-  );
-}
+      Post.deleteMany({user: req.user}, (err) => {
+        if (err) {
+          console.log('We hit the deleteMany Error')
+          return res.redirect('/getDeleteAcct');
+        }
+
+        Group.find({members: req.user}).updateMany({$pull: {members: req.user._id}}, (err) => {
+          if(err) {
+            console.log('We hit the group updateMany Error')
+            return res.redirect('/getDeleteAcct');
+          }
+          
+          req.flash("deleteSuccess", "Your account has been deleted. You must signup again to access Word of Mouth");
+          console.log('Deleted Account');
+          return res.redirect('/');
+        })
+          
+        })
+      })
+    };
