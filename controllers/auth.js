@@ -87,12 +87,28 @@ exports.postSignup = (req, res, next) => {
     gmail_remove_dots: false,
   });
 
+
+  const post = new Post({
+    title: "Example Review",
+    image: "https://res.cloudinary.com/demvccuww/image/upload/v1665295544/qr0uwcyxa8z82g8li5eb.jpg",
+    cloudinaryId: "qr0uwcyxa8z82g8li5eb",
+    summary: "This is an example to guide you to creating quality reviews",
+    review: "This review body example will help you in creating quality reviews",
+    category: "Other",
+    rating: "8",
+    likes: 0,
+  })
+
+
   const user = new User({
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,
-    posts: ['632bf368f8d25c3a94be5795'], //add default post to help with mongoose populate method in group controller
+    posts: [post._id],
   });
+
+  post.user = user._id;
+
 
   User.findOne(
     { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
@@ -110,13 +126,18 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
-        req.logIn(user, (err) => {
+        post.save((err) => {
           if (err) {
-            return next(err);
+            return next (err)
           }
-          res.redirect("/profile");
-        });
-      });
+          req.logIn(user, (err) => {
+            if (err) {
+              return next(err);
+            }
+            res.redirect("/profile");
+          })
+        })
+      })
     }
   );
 };
