@@ -67,6 +67,15 @@ module.exports = {
       console.log(err);
     }
   },
+  showCreatePost: async (req, res) => {
+    try {
+      console.log("We've hit a render");
+      res.render("postPage.ejs");
+    } catch (err) {
+      console.log(err);
+      console.log("we've hit an error");
+    }
+  },
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(
