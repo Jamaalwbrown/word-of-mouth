@@ -1,4 +1,5 @@
 <%- include('partials/header') -%>
+<form action="/post/createPost" enctype="multipart/form-data" method="POST">
 <div>
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
@@ -8,7 +9,6 @@
         </div>
       </div>
       <div class="mt-5 md:col-span-2 md:mt-0">
-        <form action="/post/createPost" enctype="multipart/form-data" method="POST">
           <div class="form-control shadow sm:overflow-hidden sm:rounded-md">
             <div class="space-y-6 bg-neutral px-4 py-5 sm:p-6">
               <div class="grid grid-cols-3 gap-6">
@@ -37,19 +37,20 @@
   
             </div>
             <div class="bg-neutral-content px-4 py-3 text-right sm:px-6">
-              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+              <!-- <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button> -->
             </div>
           </div>
-        </form>
       </div>
     </div>
 </div>
-  
+
   <div class="hidden sm:block" aria-hidden="true">
     <div class="py-5">
       <div class="border-t border-accent"></div>
     </div>
   </div>
+
+  <!-- Second Section of the Form -->
   
   <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -70,7 +71,6 @@
         </div>
       </div>
       <div class="mt-5 md:col-span-2 md:mt-0">
-        <form action="#" method="POST">
           <div class="bg-neutral overflow-hidden shadow sm:rounded-md">
             <div class="px-4 py-5 sm:p-6">
               <div class="">
@@ -83,10 +83,9 @@
               </div>
             </div>
             <div class="bg-neutral-content px-4 py-3 text-right sm:px-6">
-              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+              <!-- <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button> -->
             </div>
           </div>
-        </form>
         <script>
           CKEDITOR.replace( 'review' );
       </script>
@@ -96,22 +95,67 @@
   
   <div class="hidden sm:block" aria-hidden="true">
     <div class="py-5">
-      <div class="border-t border-gray-200"></div>
+      <div class="border-t border-accent"></div>
     </div>
   </div>
-  
+
+
+  <!--Third Section of the Form -->
+
   <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
-          <h3 class="text-lg font-medium leading-6 text-gray-900">Notifications</h3>
-          <p class="mt-1 text-sm text-gray-600">Decide which communications you'd like to receive and how.</p>
+          <h3 class="text-lg font-medium leading-6">Rating and Category</h3>
+          <p class="mt-1 text-md">Categorize your review and give a rating</p>
         </div>
       </div>
+
+
       <div class="mt-5 md:col-span-2 md:mt-0">
-        <form action="#" method="POST">
-          <div class="overflow-hidden shadow sm:rounded-md">
-            <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
+          <div class="bg-neutral overflow-hidden shadow sm:rounded-md">
+            <div class="space-y-6 px-4 py-5 sm:p-6">
+              <div class="form-control w-full max-w-xs">
+                <label for="category" class="label">
+                  <span class="label-text">Category</span>
+                </label>
+                <select class="select select-primary" id="category" name="category">
+                  <option disabled selected>Pick a category</option>
+                  <option>Food and Drink</option>
+                  <option>Experience</option>
+                  <option>Gaming</option>
+                  <option>Movie</option>
+                  <option>Music</option>
+                  <option>Other</option>
+                  <option>Podcast</option>
+                  <option>Product</option>
+                  <option>Restaurant</option>
+                  <option>Service</option>
+                  <option>TV Show</option>
+                  <option>Venue</option>
+                </select>
+              </div>
+
+              <div class="form-control w-full max-w-xs"> 
+                <label for="rating" class="label">
+                  <span class="label-text">Rating</span>
+                </label>
+                <div class="rating rating-lg rating-half">
+                  <input type="radio" name="rating" value="0" class="rating-hidden" />
+                  <input type="radio" name="rating" value="1" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                  <input type="radio" name="rating" value="2" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                  <input type="radio" name="rating" value="3" class="bg-yellow-500 mask mask-star-2 mask-half-1" checked />
+                  <input type="radio" name="rating" value="4" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                  <input type="radio" name="rating" value="5" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                  <input type="radio" name="rating" value="6" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                  <input type="radio" name="rating" value="7" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                  <input type="radio" name="rating" value="8" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                  <input type="radio" name="rating" value="9" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
+                  <input type="radio" name="rating" value="10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
+                </div>
+              </div>
+
+              <!--  
               <fieldset>
                 <legend class="sr-only">By Email</legend>
                 <div class="text-base font-medium text-gray-900" aria-hidden="true">By Email</div>
@@ -145,31 +189,14 @@
                   </div>
                 </div>
               </fieldset>
-              <fieldset>
-                <legend class="contents text-base font-medium text-gray-900">Push Notifications</legend>
-                <p class="text-sm text-gray-500">These are delivered via SMS to your mobile phone.</p>
-                <div class="mt-4 space-y-4">
-                  <div class="flex items-center">
-                    <input id="push-everything" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                    <label for="push-everything" class="ml-3 block text-sm font-medium text-gray-700">Everything</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input id="push-email" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                    <label for="push-email" class="ml-3 block text-sm font-medium text-gray-700">Same as email</label>
-                  </div>
-                  <div class="flex items-center">
-                    <input id="push-nothing" name="push-notifications" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                    <label for="push-nothing" class="ml-3 block text-sm font-medium text-gray-700">No push notifications</label>
-                  </div>
-                </div>
-              </fieldset>
+               -->
             </div>
-            <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
+            <div class="bg-neutral-content px-4 py-3 text-right sm:px-6">
+              <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" value="Upload">Submit Review</button>
             </div>
           </div>
-        </form>
       </div>
     </div>
 </div>
+</form>
   <%- include('partials/footer') -%>
