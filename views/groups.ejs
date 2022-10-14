@@ -5,6 +5,39 @@
   <p><strong>Email</strong>: <%= user.email %></p>
 </div>
 
+<!-- Form for creating a new group -->
+<div class="mt-5">
+  <h2>Create a Group</h2>
+  <form action="/groups/createGroup" method="POST">
+
+    <div class="form-control w-full max-w-xs">
+      <label for="groupName" class="label">
+        <span class="label-text">Group Name</span>
+      </label>
+      <input type="text" placeholder="Ex: OG Squad" class="input input-bordered input-primary w-full max-w-xs" id="groupName" name="groupName"/>
+    </div>
+
+    <div class="form-control">
+      <label for="groupDescription" class="label">
+        <span class="label-text">Group Description</span>
+      </label> 
+      <textarea class="textarea textarea-primary" placeholder="Ex: Group for best friends to share our reviews" rows="1" id="groupDescription" name="groupDescription"></textarea>
+      <label class="label">
+        <span class="label-text-alt"><strong>You will be able to add members once the group is created</strong></span>
+      </label> 
+    </div>
+
+    <!-- <div class="form-control">
+      <label for="members" class="label">
+        <span class="label-text">Members (enter usernames seperated by comma)</span>
+      </label> 
+      <textarea class="textarea textarea-primary" placeholder="Example: Bob, Rick, James, Sarah..." id="members" name="members"></textarea>
+    </div> -->
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+  </form>
+</div>
+
+
 <!-- We list the groups that are created by this user -->     
 <div class="col-6 mt-6">
     <h3>Groups you have created:</h3>

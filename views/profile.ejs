@@ -20,123 +20,24 @@
         </div>
       <% } %>
 
-      <h3 class="text-2xl">Account Info</h3>
-      <p><strong>User Name</strong>: <%= user.userName %></p>
-      <p><strong>Email</strong>: <%= user.email %></p>
-      <a class="btn btn-error mt-4" href="/getdeleteAcct">Delete Account</a>
-      <a class="btn btn-primary" href="/showCreatePost">Post Review</a>
-    </div>
-
-      <div class="grid md:grid-cols-2 gap-4 m-4">
-
-        <!-- Form for submitting a review -->
-        <div class="mt-5">
-          <h2>Add a review</h2>
-          <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-            
-            <div class="form-control w-full max-w-xs">
-              <label for="title" class="label">
-                <span class="label-text">Title</span>
-              </label>
-              <input type="text" placeholder="Review Title" class="input input-bordered input-primary w-full max-w-xs" id="title" name="title"/>
-            </div>
-
-            <div class="form-control">
-              <label for="summary" class="label">
-                <span class="label-text">Summary</span>
-              </label> 
-              <textarea class="textarea textarea-primary" placeholder="Review Summary" id="summary" name="summary"></textarea>
-            </div>
-
-            <div class="form-control">
-              <label for="review" class="label">
-                <span class="label-text">Review</span>
-              </label> 
-              <textarea class="textarea textarea-primary" placeholder="Review" id="review" name="review"></textarea>
-            </div>
-
-            <div class="form-control w-full max-w-xs">
-              <label for="category" class="label">
-                <span class="label-text">Category</span>
-              </label>
-              <select class="select select-primary" id="category" name="category">
-                <option disabled selected>Pick a category</option>
-                <option>Food and Drink</option>
-                <option>Experience</option>
-                <option>Gaming</option>
-                <option>Movie</option>
-                <option>Music</option>
-                <option>Other</option>
-                <option>Podcast</option>
-                <option>Product</option>
-                <option>Restaurant</option>
-                <option>Service</option>
-                <option>TV Show</option>
-                <option>Venue</option>
-              </select>
-            </div>
-
-            <div class="form-control w-full max-w-xs"> 
-              <label for="rating" class="label">
-                <span class="label-text">Rating</span>
-              </label>
-              <div class="rating rating-lg rating-half">
-                <input type="radio" name="rating" value="0" class="rating-hidden" />
-                <input type="radio" name="rating" value="1" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                <input type="radio" name="rating" value="2" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                <input type="radio" name="rating" value="3" class="bg-yellow-500 mask mask-star-2 mask-half-1" checked />
-                <input type="radio" name="rating" value="4" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                <input type="radio" name="rating" value="5" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                <input type="radio" name="rating" value="6" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                <input type="radio" name="rating" value="7" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                <input type="radio" name="rating" value="8" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-                <input type="radio" name="rating" value="9" class="bg-yellow-500 mask mask-star-2 mask-half-1" />
-                <input type="radio" name="rating" value="10" class="bg-yellow-500 mask mask-star-2 mask-half-2" />
-              </div>
-            </div>
-
-            <div class="form-control">
-              <label for="imgUpload" class="label">
-                <span class="label-text">Image</span>
-              </label> 
-              <input type="file" class="form-control" id="imageUpload" name="file"/>
-            </div>
-            <button type="submit" class="btn btn-primary mt-2" value="Upload">Submit</button>
-          </form>
-        </div>
-
-         <!-- Form for creating a new group -->
-        <div class="mt-5">
-          <h2>Create a Group</h2>
-          <form action="/groups/createGroup" method="POST">
-
-            <div class="form-control w-full max-w-xs">
-              <label for="groupName" class="label">
-                <span class="label-text">Group Name</span>
-              </label>
-              <input type="text" placeholder="Ex: OG Squad" class="input input-bordered input-primary w-full max-w-xs" id="groupName" name="groupName"/>
-            </div>
-
-            <div class="form-control">
-              <label for="groupDescription" class="label">
-                <span class="label-text">Group Description</span>
-              </label> 
-              <textarea class="textarea textarea-primary" placeholder="Ex: Group for best friends to share our reviews" id="groupDescription" name="groupDescription"></textarea>
-              <label class="label">
-                <span class="label-text-alt"><strong>You will be able to add members once the group is created</strong></span>
-              </label> 
-            </div>
-
-            <!-- <div class="form-control">
-              <label for="members" class="label">
-                <span class="label-text">Members (enter usernames seperated by comma)</span>
-              </label> 
-              <textarea class="textarea textarea-primary" placeholder="Example: Bob, Rick, James, Sarah..." id="members" name="members"></textarea>
-            </div> -->
-            <button type="submit" class="btn btn-primary mt-2">Submit</button>
-          </form>
+      <div class="grid grid-cols-6">
+        <div class="border-2 py-2 px-2">
+          <h3 class="text-2xl">Account Info</h3>
+          <p><strong>User Name</strong>: <%= user.userName %></p>
+          <p><strong>Email</strong>: <%= user.email %></p>
+          <a class="btn btn-error mt-4" href="/getdeleteAcct">Delete Account</a>
         </div>
       </div>
+
+      <div class="mt-6">
+        <a class="btn btn-primary" href="/showCreatePost">Create Review</a>
+        <a class="btn btn-primary" href="/groups">Create Group</a>
+      </div>
+    </div>
+
+    <div class="bg-primary mt-6 px-4 py-4 text-center sm:px-6 border-2">
+      <h3 class="text-4xl font-bold">Your Reviews</h3>
+    </div>
 
       <div class="">
          <!-- Showing the list of reviews/posts for the logged in user -->

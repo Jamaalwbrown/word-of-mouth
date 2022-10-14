@@ -117,16 +117,16 @@
         <!-- head -->
         <thead>
           <tr>
-            <th></th>
+            <th>No.</th>
             <th>Username</th>
             <th># of Reviews</th>
           </tr>
         </thead>
         <tbody>
           <!-- rows -->
-          <% for(var i=0; i<group.members.length; i++) {%>
+          <% for(var i=0; i < group.members.length; i++) {%>
           <tr class="hover">
-            <th><%= i %></th>
+            <th><%= i + 1 %></th>
             <td><a href="/post/show/<%= group.members[i].id %>" class="link link-accent"><%= group.members[i].userName %></a></td>
             <td><%= i %></td>
           </tr>
