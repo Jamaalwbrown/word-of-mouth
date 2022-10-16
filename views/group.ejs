@@ -37,7 +37,7 @@
       <div class="">
 
         <div>
-          <form action="/groups/addMember/<%= group.id %>?_method=PUT" method="POST">
+          <form action="/groups/addMember/<%= group._id %>?_method=PUT" method="POST">
             <div class="form-control w-full max-w-xs">
                 <label for="username" class="label">Member Username</label>
                 <input type="text" placeholder="Add Member" class="input input-bordered input-primary w-full max-w-xs" id="username" name="username">
@@ -128,7 +128,7 @@
           <tr class="hover">
             <th><%= i + 1 %></th>
             <td><a href="/post/show/<%= group.members[i]._id %>" class="link link-accent"><%= group.members[i].userName %></a></td>
-            <td><%= i %></td>
+            <td><%= group.members[i].posts.length %></td>
           </tr>
           <% } %>
         </tbody>
