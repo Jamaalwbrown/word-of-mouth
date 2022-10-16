@@ -68,7 +68,7 @@
                        <a href="/post/<%= group.members[j].posts[0].id%>">
                          <h2 class="card-title"><%=group.members[j].posts[0].title%></h2>
                        </a>
-                       <a href="/post/show/<%= group.members[j].id%>" class="link link-accent">
+                       <a href="/post/show/<%= group.members[j]._id%>" class="link link-accent">
                         <h3 class="card-title text-base">By <%=group.members[j].userName%></h2>
                       </a>
 
@@ -98,7 +98,7 @@
                       </div>
                        <p><%=group.members[j].posts[0].summary%></p>
                        <div class="card-actions justify-end">
-                         <a href="/post/<%= group.members[j].posts[0].id%>" class="btn btn-primary">Read Review</a>
+                         <a href="/post/<%= group.members[j].posts[0]._id %>" class="btn btn-primary">Read Review</a>
                        </div>
                      </div>
                    </div>
@@ -127,7 +127,7 @@
           <% for(var i=0; i < group.members.length; i++) {%>
           <tr class="hover">
             <th><%= i + 1 %></th>
-            <td><a href="/post/show/<%= group.members[i].id %>" class="link link-accent"><%= group.members[i].userName %></a></td>
+            <td><a href="/post/show/<%= group.members[i]._id %>" class="link link-accent"><%= group.members[i].userName %></a></td>
             <td><%= i %></td>
           </tr>
           <% } %>
