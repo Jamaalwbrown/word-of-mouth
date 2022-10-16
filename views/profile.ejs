@@ -38,13 +38,13 @@
       <h3 class="text-4xl font-bold">Your Reviews</h3>
     </div>
 
-      <div class="">
+      <div id="cards-laptop">
          <!-- Showing the list of reviews/posts for the logged in user -->
         <ul class="grid md:grid-cols-2 2xl:grid-cols-4 place-items-center">
            <% for(var i=0; i<posts.length; i++) {%>
             <li class="mt-5">
               <div class="card w-96 2xl:w-80  bg-base-300 shadow-xl">
-                 <figure><img src="<%= posts[i].image%>" alt="review-card-image" /></figure>
+                <figure><img src="<%= posts[i].image%>" alt="review-card-image" /></figure>
                 <div class="card-body">
                   <a href="/post/<%= posts[i]._id%>">
                     <h2 class="card-title"><%=posts[i].title%></h2>
@@ -84,6 +84,53 @@
           <% } %>
         </ul>
       </div>
+
+      <div id="cards-mobile">
+        <ul class="grid md:grid-cols-2 2xl:grid-cols-4 place-items-center">
+          <% for(var i=0; i<posts.length; i++) {%>
+           <li class="mt-5">
+             <!-- Show smaller cards for mobile view -->
+          <div class="card w-96 bg-base-100 shadow-xl image-full">
+            <figure><img src="<%= posts[i].image%>" alt="review-card-image" /></figure>
+            <div class="card-body">
+              <a href="/post/<%= posts[i]._id%>">
+                <h2 class="card-title"><%=posts[i].title%></h2>
+              </a>
+              <div class="">
+                <ul class="rating rating-lg rating-half">
+                  <% for(var j=1; j <= 10; j++) {%>
+                    <% if (j % 2 == 0 && j <= posts[i].rating) { %>
+                      <li class="bg-yellow-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                  <% } %>
+
+                    <% if (j % 2 != 0 && j <= posts[i].rating) { %>
+                      <li class="bg-yellow-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                  <% } %>
+
+                    <% if (j % 2 == 0 && j > posts[i].rating) { %>
+                      <li class="bg-gray-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
+                  <% } %>
+
+                    <% if (j % 2 != 0 && j > posts[i].rating) { %>
+                      <li class="bg-gray-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
+                  <% } %>
+
+                  <% } %>
+                </ul>
+              </div>
+              <p><%=posts[i].summary%></p>
+              <div class="card-actions justify-end">
+                <a href="/post/<%= posts[i]._id%>" class="btn btn-primary">Read Review</a>
+              </div>
+            </div>
+          </div>
+           </li>
+         <% } %>
+       </ul>
+      </div>
+
+
+      
 
       <!-- <div class="grid grid-cols-2 gap-4 mt-8"> -->
          <!-- We list the groups that are created by this user -->

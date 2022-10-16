@@ -10,10 +10,18 @@ lightGrey = #e5e5e5;
   #laptop-nav{
     display: none;
   }
+
+  #cards-laptop{
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
   #mobile-nav{
+    display: none;
+  }
+
+  #cards-mobile{
     display: none;
   }
 }
