@@ -85,11 +85,11 @@
         </ul>
       </div>
 
+        <!-- Show smaller cards for mobile view -->
       <div id="cards-mobile">
         <ul class="grid md:grid-cols-2 2xl:grid-cols-4 place-items-center">
           <% for(var i=0; i<posts.length; i++) {%>
            <li class="mt-5">
-             <!-- Show smaller cards for mobile view -->
           <div class="card w-96 bg-base-100 shadow-xl image-full">
             <figure><img src="<%= posts[i].image%>" alt="review-card-image" /></figure>
             <div class="card-body">

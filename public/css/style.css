@@ -14,6 +14,10 @@ lightGrey = #e5e5e5;
   #cards-laptop{
     display: none;
   }
+
+  #group-reviews-laptop{
+    display: none;
+  }
 }
 
 @media (min-width: 768px) {
@@ -22,6 +26,22 @@ lightGrey = #e5e5e5;
   }
 
   #cards-mobile{
+    display: none;
+  }
+
+  #group-reviews-mobile{
+    display: none;
+  }
+}
+
+@media (max-width: 1536px) {
+  #members-laptop{
+    display: none;
+  }
+}
+
+@media (min-width: 1536px) {
+  #members-mobile{
     display: none;
   }
 }
