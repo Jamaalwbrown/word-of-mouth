@@ -33,9 +33,32 @@
 
     <!-- Header and Navigation Bar for the Site -->
     <header class="">
-      <div class="navbar bg-primary text-primary-content">
+      <div class="navbar bg-primary" id="mobile-nav">
+        <div class="navbar-start">
+          <a href="/" class="btn btn-ghost normal-case text-xl">Word of Mouth</a>
+        </div>
+        <div class="navbar-end">
+          <div class="dropdown">
+            <label tabindex="0" class="btn btn-ghost btn-circle">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+            </label>
+            <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <li><a href="/profile">Profile</a></li>
+            <li><a href="/groups">Groups</a></li>
+            <li><a>About</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/logout">Logout</a></li>
+            <li><a href="#footer">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="navbar bg-primary text-primary-content" id="laptop-nav">
         <div class="flex-1">
-          <a href="/"class="btn btn-ghost normal-case text-xl">Word Of Mouth</a>
+          <a href="/" class="btn btn-ghost normal-case text-xl">Word Of Mouth</a>
         </div>
         <div class="flex-none">
           <ul class="menu menu-horizontal p-0">
@@ -49,4 +72,6 @@
           </ul>
         </div>
       </div>
+
+      
     </header>

@@ -6,7 +6,14 @@ white = white;
 lightGrey = #e5e5e5;
 */
 
-nav,
-footer {
-  background-color: #fb690a;
+@media (max-width: 768px) {
+  #laptop-nav{
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  #mobile-nav{
+    display: none;
+  }
 }
