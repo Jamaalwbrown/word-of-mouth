@@ -94,14 +94,31 @@ module.exports = {
     try {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
+
+      // Delete post id from User's post array
+      await User.findOne({posts: req.params.id}).updateOne(
+        { $pull: {posts: req.params.id}}
+      )
+
       // Delete image from cloudinary
       await cloudinary.uploader.destroy(post.cloudinaryId);
+
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
+      req.flash("deleteReviewSuccess", `Your Review Was Deleted`);
       res.redirect("/profile");
     } catch (err) {
+      req.flash("deleteReviewFail", `Something Went Wrong. Try Again`);
       res.redirect("/profile");
+    }
+  },
+  showDeletePost: async (req, res) => {
+    try {
+      const post = await Post.findById({ _id: req.params.id });
+      res.render("deletePost.ejs", {post: post, user: req.user});
+    } catch (err) {
+      res.redirect(`/post/${req.params.id}`);
     }
   },
   editPost: async (req, res) => {

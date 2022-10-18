@@ -11,6 +11,8 @@ router.get("/show/:id", postsController.showPosts);
 
 router.get("/showEdit/:id", postsController.showEdit);
 
+router.get("/showDelete/:id", postsController.showDeletePost);
+
 router.post("/createPost", upload.single("file"), postsController.createPost);
 
 router.put("/likePost/:id", postsController.likePost);
