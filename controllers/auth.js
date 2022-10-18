@@ -92,8 +92,9 @@ exports.postSignup = (req, res, next) => {
     title: "Example Review",
     image: "https://res.cloudinary.com/demvccuww/image/upload/v1665295544/qr0uwcyxa8z82g8li5eb.jpg",
     cloudinaryId: "qr0uwcyxa8z82g8li5eb",
-    summary: "This is an example to guide you to creating quality reviews",
-    review: "This review body example will help you in creating quality reviews",
+    summary: "Please Read!! Do Not Delete Until You Have Added Your Own Review",
+    review: `Welcome to Word of Mouth! This review serves as a tutorial for you in how to use this application. Going to 'Profile' in the Navigation Bar at the top will bring you to all your reviews shown as cards.
+    Going to 'Groups' on the navbar at the top will bring you to the group page where you can create groups and see what groups you are a part of. Note: that you must create at least one review in order to create a group`,
     category: "Other",
     rating: "8",
     likes: 0,
