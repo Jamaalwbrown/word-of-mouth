@@ -2,12 +2,16 @@
 <form action="/post/createPost" enctype="multipart/form-data" method="POST">
 <div>
     <div class="md:grid md:grid-cols-3 md:gap-6">
+
+      <!-- Review Header Description Section -->
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
-          <h3 class="text-lg font-medium leading-6">Review Header</h3>
+          <h3 class="text-lg font-bold leading-6">Review Header</h3>
           <p class="mt-1">Title your review and give a short summary</p>
         </div>
       </div>
+
+      <!-- Review Header Section -->
       <div class="mt-5 md:col-span-2 md:mt-0">
           <div class="form-control shadow sm:overflow-hidden sm:rounded-md">
             <div class="space-y-6 bg-neutral px-4 py-5 sm:p-6">
@@ -56,9 +60,11 @@
     <div class="md:grid md:grid-cols-3 md:gap-6">
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
-          <h3 class="text-lg font-medium leading-6">Review Body</h3>
+
+          <!-- Review Body Description -->
+          <h3 class="text-lg font-bold leading-6">Review Body</h3>
           <p class="mt-1 text-md">This is where you give personality to your review</p>
-          <h4 class="mt-4 text-md">Questions you should answer in your review</h4>
+          <h4 class="mt-4 text-md font-bold underline">Questions you should answer in your review</h4>
           <ul class="mt-2 text-sm">
             <li>Why are you sharing this review?</li>
             <br>
@@ -66,10 +72,16 @@
             <br>
             <li>What did you dislike?</li>
             <br>
-            <li>What is the targeted audience for this?</li>
+            <li>What is the recommended audience?</li>
+            <br>
+            <li>What is the amount of time invested(if applicable)?</li>
+            <br>
+            <li>Was this something in line with your usual interests or was it different?</li>
           </ul>
         </div>
       </div>
+
+      <!-- Review Body Section -->
       <div class="mt-5 md:col-span-2 md:mt-0">
           <div class="bg-neutral overflow-hidden shadow sm:rounded-md">
             <div class="px-4 py-5 sm:p-6">
@@ -93,6 +105,7 @@
     </div>
   </div>
   
+  <!-- Divider Between Sections -->
   <div class="hidden sm:block" aria-hidden="true">
     <div class="py-5">
       <div class="border-t border-accent"></div>
@@ -101,17 +114,18 @@
 
 
   <!--Third Section of the Form -->
-
   <div class="mt-10 sm:mt-0">
     <div class="md:grid md:grid-cols-3 md:gap-6">
+
+      <!-- Rating and Category Description -->
       <div class="md:col-span-1">
         <div class="px-4 sm:px-0">
-          <h3 class="text-lg font-medium leading-6">Rating and Category</h3>
+          <h3 class="text-lg font-bold leading-6">Rating and Category</h3>
           <p class="mt-1 text-md">Categorize your review and give a rating</p>
         </div>
       </div>
 
-
+      <!-- Rating and Category Section -->
       <div class="mt-5 md:col-span-2 md:mt-0">
           <div class="bg-neutral overflow-hidden shadow sm:rounded-md">
             <div class="space-y-6 px-4 py-5 sm:p-6">
@@ -155,41 +169,6 @@
                 </div>
               </div>
 
-              <!--  
-              <fieldset>
-                <legend class="sr-only">By Email</legend>
-                <div class="text-base font-medium text-gray-900" aria-hidden="true">By Email</div>
-                <div class="mt-4 space-y-4">
-                  <div class="flex items-start">
-                    <div class="flex h-5 items-center">
-                      <input id="comments" name="comments" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                    </div>
-                    <div class="ml-3 text-sm">
-                      <label for="comments" class="font-medium text-gray-700">Comments</label>
-                      <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
-                    </div>
-                  </div>
-                  <div class="flex items-start">
-                    <div class="flex h-5 items-center">
-                      <input id="candidates" name="candidates" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                    </div>
-                    <div class="ml-3 text-sm">
-                      <label for="candidates" class="font-medium text-gray-700">Candidates</label>
-                      <p class="text-gray-500">Get notified when a candidate applies for a job.</p>
-                    </div>
-                  </div>
-                  <div class="flex items-start">
-                    <div class="flex h-5 items-center">
-                      <input id="offers" name="offers" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                    </div>
-                    <div class="ml-3 text-sm">
-                      <label for="offers" class="font-medium text-gray-700">Offers</label>
-                      <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-               -->
             </div>
             <div class="bg-neutral-content px-4 py-3 text-right sm:px-6">
               <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" value="Upload">Submit Review</button>

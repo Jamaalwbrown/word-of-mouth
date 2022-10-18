@@ -27,17 +27,21 @@
         </div>
         <div class="col-span-1 mt-5 text-center">
           <p><%= post.summary %></p>
-          <p>By <%= post.user.userName %> on <%= post.createdAt.toDateString() %></p>
+          <p class="text-accent">By <%= post.user.userName %> on <%= post.createdAt.toDateString() %></p>
         </div>
+
+        <!-- Delete Button on Right Side of the Post -->
         <div class="col-span-1 col-end-4">
           <%if(post.user.id == user.id){ %>
             <form
               action="/post/deletePost/<%= post.id %>?_method=DELETE"
               method="POST"
-              class="object-center"
+              class="mx-auto"
             >
-              <button class="btn btn-secondary fa fa-trash" type="submit"></button>
-              <h3 class="text-error">Delete Post</h3>
+              <div class="grid grid-cols-1 place-items-center">
+                <button class="btn btn-secondary fa fa-trash" type="submit"></button>
+                <h3 class="text-error">Delete Post</h3>
+              </div>
             </form>
             <%}%>
         </div>
