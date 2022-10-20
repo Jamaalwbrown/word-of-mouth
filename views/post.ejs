@@ -13,7 +13,12 @@
       <div class="grid grid-rows-2 grid-cols-4 place-items-center">
         <img class="img-fluid col-start-2 col-span-2 row-span-2" src="<%= post.image%>" />
       </div>
-      <h2 class="font-bold text-4xl text-center"><%= post.title %></h2>
+      <div>
+        <%if(post.imageAuthor){ %>
+          <figcaption class="text-center text-xs "><strong>Image is by </strong><%= post.imageAuthor %> and is located <a class="link link-accent" href="<%= post.imageSource %>">here</a></figcaption>
+        <%}%>
+      </div>
+      <h2 class="font-bold text-4xl text-center mt-4"><%= post.title %></h2>
       <div class="grid grid-cols-3 place-items-center">
         <div class="col-span-1">
           <form

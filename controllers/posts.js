@@ -46,6 +46,8 @@ module.exports = {
         title: req.body.title,
         image: result.secure_url,
         cloudinaryId: result.public_id,
+        imageAuthor: req.body.imageAuthor,
+        imageSource: req.body.imageSource,
         summary: req.body.summary,
         review: req.body.review,
         category: req.body.category,
@@ -70,7 +72,7 @@ module.exports = {
   showCreatePost: async (req, res) => {
     try {
       console.log("We've hit a render");
-      res.render("postPage.ejs");
+      res.render("postPage.ejs", {user: req.user});
     } catch (err) {
       console.log(err);
       console.log("we've hit an error");

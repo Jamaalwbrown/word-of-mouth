@@ -92,6 +92,11 @@ module.exports = {
           return res.redirect(`/groups/${req.params.id}`)
         }
 
+        if(user.posts.length == 0) {
+          req.flash("error", `${req.body.username} currently has no reviews created. Users must have one review to be added into a group`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
+
         //debugging checks
         console.log('User we want to add is' + user)
         console.log('User id we want to add is' + user.id);
@@ -255,6 +260,15 @@ module.exports = {
       }
     },
 
+    showGroupDelete: async (req, res) => {
+      try {
+        const group = await Group.findById({ _id: req.params.id });
+        res.render("deleteGroup.ejs", {group: group, user: req.user});
+      } catch (err) {
+        res.redirect(`/groups/${req.params.id}`);
+      }
+    },
+
     deleteGroup: async (req, res) => {
       try {
         // Find group by id
@@ -274,6 +288,7 @@ module.exports = {
          // Delete group from db
         await Group.remove({ _id: req.params.id });
         console.log("Deleted Group");
+        req.flash("groupDeleteSuccess", `You have delete the group: ${group.groupName}`);
         res.redirect("/profile");
       } catch (err) {
         res.redirect("/profile");

@@ -1,0 +1,30 @@
+<%- include('partials/header') -%>
+<div class="">
+    <div class="mt-5">
+      <div>
+        <% if (messages.deleteGroupFail) { %>
+          <div class="alert alert-error shadow-lg">
+            <div>
+              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              <span><%= messages.deleteGroupFail %></span> 
+            </div>
+          </div>
+        <% } %>
+  
+        <h3 class="text-2xl">Account Info</h3>
+        <p><strong>User Name</strong>: <%= user.userName %></p>
+        <p><strong>Email</strong>: <%= user.email %></p>
+        <a class="btn btn-primary mt-4" href="/groups/<%= group._id %>">Back to Group</a>
+      </div>
+      <div class= "grid place-items-center">
+          <h3 class="text-2xl text-error text-center">Are you sure you want to delete this group?</h3>
+          <span class="text-accent text-center">You are deleting the group named: <strong>"<%= group.groupName %>"</strong></span>
+          <form action="/groups/deleteGroup/<%= group.id %>?_method=DELETE" method="POST" class="col-3">
+            <button class="btn btn-error mt-2" type="submit">Delete Group</button>
+          </form>
+      </div>
+             
+    </div>
+  </div>
+
+<%- include('partials/footer') -%>

@@ -13,6 +13,14 @@ const PostSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  imageAuthor: {
+    type: String,
+    require: false,
+  },
+  imageSource: {
+    type: String,
+    require: false,
+  },
   summary: {
     type: String,
     required: true,

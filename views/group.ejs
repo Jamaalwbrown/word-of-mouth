@@ -50,10 +50,7 @@
                     </div>
                     <button type="submit" class="btn btn-primary mt-2">Add Member</button>
                   </form>
-  
-                  <form action="/groups/deleteGroup/<%= group.id %>?_method=DELETE" method="POST" class="col-3">
-                    <button class="btn btn-error mt-2" type="submit">Delete Group</button>
-                  </form>
+                  <a href="/groups/showGroupDelete/<%= group._id %>"><button class="btn btn-error mt-2">Delete Group</button></a>
                 </div>
 
                 <div class="col-span-2">

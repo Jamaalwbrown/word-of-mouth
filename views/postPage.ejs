@@ -1,4 +1,23 @@
 <%- include('partials/header') -%>
+<div>
+  <% if (messages.postEditError) { %>
+    <div class="alert alert-error shadow-lg">
+      <div>
+        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <span><%= messages.postEditError %></span>
+      </div>
+    </div>
+  <% } %>
+  <h3 class="text-2xl">Account Info</h3>
+  <p><strong>User Name</strong>: <%= user.userName %></p>
+  <p><strong>Email</strong>: <%= user.email %></p>
+</div>
+
+<div class="hidden sm:block" aria-hidden="true">
+  <div class="py-2">
+    <div class="border-t border-accent"></div>
+  </div>
+</div>
 <form action="/post/createPost" enctype="multipart/form-data" method="POST">
 <div>
     <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -34,9 +53,21 @@
   
               <div class="form-control">
                 <label for="imgUpload" class="label">
-                  <span class="label-text">Image</span>
+                  <span class="label-text">Image (.jpg, .jpeg, or .png supported)</span>
                 </label> 
                 <input type="file" class="form-control" id="imageUpload" name="file"/>
+              </div>
+
+              <div class="form-control w-full max-w-lg grid col-span-3">
+                <span class="">Image creditation info (if applicable)</span>
+                <label for="imageAuthor" class="label">
+                  <span class="label-text">Image Author (name, company, or org)</span>
+                </label>
+                <input type="text" placeholder="Image Author" class="input input-bordered input-primary w-full max-w-lg text-sm" id="imageAuthor" name="imageAuthor"/>
+                <label for="imageSource" class="label">
+                  <span class="label-text">Image Source (link)</span>
+                </label>
+                <input type="text" placeholder="Image Source" class="input input-bordered input-primary w-full max-w-lg text-sm" id="imageSource" name="imageSource"/>
               </div>
   
             </div>
