@@ -248,7 +248,13 @@
           <% for(var i=0; i < group.members.length; i++) {%>
           <tr class="hover">
             <th><%= i + 1 %></th>
-            <td><a href="/post/show/<%= group.members[i]._id %>" class="link link-accent"><%= group.members[i].userName %></a></td>
+            <td><a href="/post/show/<%= group.members[i]._id %>" class="link link-accent"><%= group.members[i].userName %></a>
+              <% for(var s=0; s < group.moderators.length; s++) { %>
+              <% if(group.moderators[s].equals(group.members[i]._id)) { %> 
+                <span class="badge badge-secondary">Mod</span> 
+                <% } %>
+              <% } %>
+            </td>
             <td><%= group.members[i].posts.length %></td>
           </tr>
           <% } %>

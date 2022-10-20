@@ -190,6 +190,71 @@ module.exports = {
       }
     },
 
+    removeMember: async (req, res) => {
+      try {
+        console.log(req.body.username);
+
+        //retreive the group we want to add the moderator to.
+        const group = await Group.findById(req.params.id);
+
+        // Grab the user we want to add to the group
+        //Check if the requested user exists. If not add to flash messages and redirect
+        const user = await User.findOne({userName: req.body.username})
+        if(!user) {
+          req.flash("error", `${req.body.username} does not exist as a user`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
+
+        //debugging checks
+        console.log('User we want to add is' + user)
+        console.log('User id we want to add is' + user.id);
+        console.log('Group we want to add user to is' + group);
+
+        //Check if the user is in the group we want to remove them from
+        const existingUser = await User.findOne({ $and: [{userName: req.body.username}, {groups: req.params.id }] });
+        console.log('existingUser is:' + existingUser);
+
+        //If user is not in the group then stop
+        if(!existingUser) {
+          req.flash("error", `${req.body.username} is not a member of this group`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
+
+         //Check if the user is already a Moderator
+         const orignalCreator = await Group.findOne({ $and: [{moderators: user.id}, {createdBy: user.id }] });
+         console.log('orignalCreator is:' + orignalCreator);
+ 
+         //If already a moderator, flash error and then redirect to back to group page
+         if(orignalCreator) {
+           req.flash("error", `Cannot remove ${req.body.username} who created this group`);
+           return res.redirect(`/groups/${req.params.id}`)
+         }
+
+        //Remove the group id from user.groups and remove the user id to group.members
+        await User.findOneAndUpdate(
+          {userName: req.body.username},
+          {
+            $pull: {groups: req.params.id}
+          }
+        );
+
+        await Group.findOneAndUpdate(
+          {_id: req.params.id},
+          {
+            $pull: {members: user.id, moderators: user.id}, $inc: {memberCount: -1}
+          }
+        );
+
+        //Create success flash message and then redirect back to the group page
+        console.log("member removed is:" + req.body.username);
+        req.flash("success", `Success! You have removed ${req.body.username} from the group`);
+        res.redirect(`/groups/${req.params.id}`)
+      }
+      catch (err) {
+        console.log(err);
+      }
+    },
+
     deleteGroup: async (req, res) => {
       try {
         // Find group by id
