@@ -1,10 +1,3 @@
-/*
-=== STYLE COLOR GUIDE ===
-orange = #fb690a;
-veryDarkGrey = #2f2e41;
-white = white;
-lightGrey = #e5e5e5;
-*/
 
 @media (max-width: 768px) {
   #laptop-nav{
@@ -34,13 +27,13 @@ lightGrey = #e5e5e5;
   }
 }
 
-@media (max-width: 1536px) {
+@media (max-width: 1538px) {
   #members-laptop{
     display: none;
   }
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1537px) {
   #members-mobile{
     display: none;
   }

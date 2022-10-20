@@ -27,7 +27,9 @@ module.exports = {
           }
           ).lean();
         console.log(group);
-        res.render("group.ejs", {group: group, user: req.user});
+        console.log(group.moderators[0])
+        console.log(group.members[0]._id)
+        res.render("group.ejs", {group: group, user: req.user,});
       } catch (err) {
         console.log(err);
       }
@@ -35,10 +37,15 @@ module.exports = {
     createGroup: async (req, res) => {
       try {
         const checkGroupName = await Group.findOne({groupName: req.body.groupName});
-        const user = await User.findOne({_id: req.user});
+        const user = await User.findOne({_id: req.user}).lean();
 
         if (checkGroupName) {
           req.flash("groupCreateError", `The group name ${req.body.groupName} is already taken`);
+          return res.redirect(`/profile`);
+        }
+
+        if (user.posts.length == 0) {
+          req.flash("noReviewError", `You must have at least one review created before making a group`);
           return res.redirect(`/profile`);
         } 
       //Create the request group based on the groupName
@@ -48,6 +55,7 @@ module.exports = {
           memberCount: 1,
           createdBy: req.user.id,
           members: [req.user.id],
+          moderators: [req.user.id],
         });
 
         //Add the group id to user.groups for the user creating the group
@@ -110,7 +118,7 @@ module.exports = {
         await Group.findOneAndUpdate(
           {_id: req.params.id},
           {
-            $push: {members: user}
+            $push: {members: user}, $inc: {memberCount: 1}
           }
         );
 
@@ -124,7 +132,64 @@ module.exports = {
       }
     },
 
-    //THIS DELETEPOST FUNCTION IS NOT DONE YET
+    addMod: async (req, res) => {
+      try {
+        console.log(req.body.username);
+
+        //retreive the group we want to add the moderator to.
+        const group = await Group.findById(req.params.id);
+
+        // Grab the user we want to add to the group
+        //Check if the requested user exists. If not add to flash messages and redirect
+        const user = await User.findOne({userName: req.body.username})
+        if(!user) {
+          req.flash("error", `${req.body.username} does not exist as a user`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
+
+        //debugging checks
+        console.log('User we want to add is' + user)
+        console.log('User id we want to add is' + user.id);
+        console.log('Group we want to add user to is' + group);
+
+        //Check if the user is in the group we want them to Moderate
+        const existingUser = await User.findOne({ $and: [{userName: req.body.username}, {groups: req.params.id }] });
+        console.log('existingUser is:' + existingUser);
+
+        //If user is not in the group then stop
+        if(!existingUser) {
+          req.flash("error", `${req.body.username} is not a member of this group`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
+
+        //Check if the user is already a Moderator
+        const existingMod = await Group.findOne({moderators: user.id});
+        console.log('existingMod is:' + existingMod);
+
+        //If already a moderator, flash error and then redirect to back to group page
+        if(existingMod) {
+          req.flash("error", `${req.body.username} is already a Moderator`);
+          return res.redirect(`/groups/${req.params.id}`)
+        }
+
+        //add the user id to group.moderators
+        await Group.findOneAndUpdate(
+          {_id: req.params.id},
+          {
+            $push: {moderators: user}
+          }
+        );
+
+        //Create success flash message and then redirect back to the group page
+        console.log("moderator added is:" + req.body.username);
+        req.flash("success", `Success! You have added ${req.body.username} as a moderator`);
+        res.redirect(`/groups/${req.params.id}`)
+      }
+      catch (err) {
+        console.log(err);
+      }
+    },
+
     deleteGroup: async (req, res) => {
       try {
         // Find group by id

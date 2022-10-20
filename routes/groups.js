@@ -12,6 +12,8 @@ router.get("/:id", ensureAuth, groupsController.getGroup);
 router.get("/", ensureAuth, groupsController.getGroups);
 router.post("/createGroup", groupsController.createGroup);
 router.put("/addMember/:id", groupsController.addMember);
+router.put("/addMod/:id", groupsController.addMod);
+// router.put("/removeMember/:id", groupsController.removeMember);
 router.delete("/deleteGroup/:id", groupsController.deleteGroup);
 
 module.exports = router;
