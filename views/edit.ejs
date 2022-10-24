@@ -9,9 +9,13 @@
         </div>
       </div>
     <% } %>
-    <h3 class="text-2xl">Account Info</h3>
-    <p><strong>User Name</strong>: <%= post.user.userName %></p>
-    <p><strong>Email</strong>: <%= post.user.email %></p>
+    <div class="grid grid-cols-8">
+      <div class="col-span-4 md:col-span-3 lg:col-span-2 border-2 py-2 px-2">
+        <h3 class="text-2xl">Account Info</h3>
+        <p><strong>User Name</strong>: <%= post.user.userName %></p>
+        <p><strong>Email</strong>: <%= post.user.email %></p>
+      </div>
+    </div>
   </div>
 
   <div class="hidden sm:block" aria-hidden="true">
@@ -237,7 +241,7 @@
                      -->
                   </div>
                   <div class="bg-neutral-content px-4 py-3 text-right sm:px-6">
-                    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" value="Upload">Submit Review</button>
+                    <button type="submit" class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" value="Upload">Edit Review</button>
                   </div>
                 </div>
             </div>

@@ -1,8 +1,10 @@
 <%- include('partials/header') -%>
-<div>
-  <h3 class="text-2xl">Account Info</h3>
-  <p><strong>User Name</strong>: <%= user.userName %></p>
-  <p><strong>Email</strong>: <%= user.email %></p>
+<div class="grid grid-cols-8">
+  <div class="col-span-4 md:col-span-3 lg:col-span-2 border-2 py-2 px-2">
+    <h3 class="text-2xl">Account Info</h3>
+    <p><strong>User Name</strong>: <%= user.userName  %></p>
+    <p><strong>Email</strong>: <%= user.email %></p>
+  </div>
 </div>
 
 <!-- Form for creating a new group -->
@@ -33,7 +35,7 @@
       </label> 
       <textarea class="textarea textarea-primary" placeholder="Example: Bob, Rick, James, Sarah..." id="members" name="members"></textarea>
     </div> -->
-    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    <button type="submit" class="btn btn-primary mt-2">Create Group</button>
   </form>
 </div>
 
