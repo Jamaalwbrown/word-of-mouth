@@ -84,6 +84,7 @@
               <div class="grid col-span-8 md:col-span-4">
                 <p><strong>Group Name</strong>: <%= group.groupName %></p>
                 <p><strong>Group Description</strong>: <%= group.groupDescription %></p>
+                <p><strong>Group Creator</strong>: <%= group.createdByUser %></p>
 
                 <!-- Expandable Member Menu for Mobile View -->
                 <div id="members-mobile" class="collapse collapse-plus">
@@ -132,10 +133,10 @@
                 <% for(var j=0; j<group.members.length; j++) {%>
                  <li class="mt-5">
                    <div class="card w-96 bg-base-300 shadow-xl">
-                      <figure><img src="<%= group.members[j].posts[0].image%>" alt="review-card-image" /></figure>
+                      <figure><img src="<%= group.members[j].posts[group.members[j].posts.length - 1].image%>" alt="review-card-image" /></figure>
                      <div class="card-body">
-                       <a href="/post/<%= group.members[j].posts[0].id%>">
-                         <h2 class="card-title"><%=group.members[j].posts[0].title%></h2>
+                       <a href="/post/<%= group.members[j].posts[group.members[j].posts.length - 1].id%>">
+                         <h2 class="card-title"><%=group.members[j].posts[group.members[j].posts.length - 1].title%></h2>
                        </a>
                        <a href="/post/show/<%= group.members[j]._id%>" class="link link-accent">
                         <h3 class="card-title text-base">By <%=group.members[j].userName%></h2>
@@ -143,29 +144,29 @@
 
                       <!-- Review Badge and Rating  -->
                       <div>
-                        <div class="badge badge-secondary"><%= group.members[j].posts[0].category %></div>
+                        <div class="badge badge-secondary"><%= group.members[j].posts[group.members[j].posts.length - 1].category %></div>
                         <ul class="rating rating-lg rating-half">
                           <% for(var k=1; k <= 10; k++) {%>
-                            <% if (k % 2 == 0 && k <= group.members[j].posts[0].rating) { %>
+                            <% if (k % 2 == 0 && k <= group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                               <li class="bg-yellow-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
                           <% } %>
   
-                            <% if (k % 2 != 0 && k <= group.members[j].posts[0].rating) { %>
+                            <% if (k % 2 != 0 && k <= group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                               <li class="bg-yellow-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
                           <% } %>
   
-                            <% if (k % 2 == 0 && k > group.members[j].posts[0].rating) { %>
+                            <% if (k % 2 == 0 && k > group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                               <li class="bg-gray-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
                           <% } %>
   
-                            <% if (k % 2 != 0 && k > group.members[j].posts[0].rating) { %>
+                            <% if (k % 2 != 0 && k > group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                               <li class="bg-gray-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
                           <% } %>
   
                           <% } %>
                         </ul>
                       </div>
-                       <p><%=group.members[j].posts[0].summary%></p>
+                       <p><%=group.members[j].posts[group.members[j].posts.length - 1].summary%></p>
                        <div class="card-actions justify-end">
                          <a href="/post/<%= group.members[j].posts[0]._id %>" class="btn btn-primary">Read Review</a>
                        </div>
@@ -180,10 +181,10 @@
               <% for(var j=0; j<group.members.length; j++) {%>
                <li class="mt-5">
                 <div class="card w-96 bg-base-100 shadow-xl image-full">
-                  <figure><img src="<%= group.members[j].posts[0].image%>" alt="review-card-image" /></figure>
+                  <figure><img src="<%= group.members[j].posts[group.members[j].posts.length - 1].image%>" alt="review-card-image" /></figure>
                   <div class="card-body">
-                    <a href="/post/<%= group.members[j].posts[0].id%>">
-                      <h2 class="card-title"><%=group.members[j].posts[0].title%></h2>
+                    <a href="/post/<%= group.members[j].posts[group.members[j].posts.length - 1].id%>">
+                      <h2 class="card-title"><%=group.members[j].posts[group.members[j].posts.length - 1].title%></h2>
                     </a>
                     <a href="/post/show/<%= group.members[j]._id%>" class="link link-accent">
                      <h3 class="card-title text-base">By <%=group.members[j].userName%></h2>
@@ -191,31 +192,31 @@
 
                    <!-- Review Badge and Rating  -->
                    <div>
-                     <div class="badge badge-secondary"><%= group.members[j].posts[0].category %></div>
+                     <div class="badge badge-secondary"><%= group.members[j].posts[group.members[j].posts.length - 1].category %></div>
                      <ul class="rating rating-lg rating-half">
                        <% for(var k=1; k <= 10; k++) {%>
-                         <% if (k % 2 == 0 && k <= group.members[j].posts[0].rating) { %>
+                         <% if (k % 2 == 0 && k <= group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                            <li class="bg-yellow-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
                        <% } %>
 
-                         <% if (k % 2 != 0 && k <= group.members[j].posts[0].rating) { %>
+                         <% if (k % 2 != 0 && k <= group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                            <li class="bg-yellow-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
                        <% } %>
 
-                         <% if (k % 2 == 0 && k > group.members[j].posts[0].rating) { %>
+                         <% if (k % 2 == 0 && k > group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                            <li class="bg-gray-500 mask mask-star-2 mask-half-2">&nbsp;&nbsp;</li>
                        <% } %>
 
-                         <% if (k % 2 != 0 && k > group.members[j].posts[0].rating) { %>
+                         <% if (k % 2 != 0 && k > group.members[j].posts[group.members[j].posts.length - 1].rating) { %>
                            <li class="bg-gray-500 mask mask-star-2 mask-half-1">&nbsp;&nbsp;</li>
                        <% } %>
 
                        <% } %>
                      </ul>
                    </div>
-                    <p><%=group.members[j].posts[0].summary%></p>
+                    <p><%=group.members[j].posts[group.members[j].posts.length - 1].summary%></p>
                     <div class="card-actions justify-end">
-                      <a href="/post/<%= group.members[j].posts[0]._id %>" class="btn btn-primary">Read Review</a>
+                      <a href="/post/<%= group.members[j].posts[group.members[j].posts.length - 1]._id %>" class="btn btn-primary">Read Review</a>
                     </div>
                   </div>
                 </div>

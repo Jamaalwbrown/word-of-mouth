@@ -36,13 +36,13 @@ module.exports = {
     },
     createGroup: async (req, res) => {
       try {
-        const checkGroupName = await Group.findOne({groupName: req.body.groupName});
+        // const checkGroupName = await Group.findOne({groupName: req.body.groupName});
         const user = await User.findOne({_id: req.user}).lean();
 
-        if (checkGroupName) {
-          req.flash("groupCreateError", `The group name ${req.body.groupName} is already taken`);
-          return res.redirect(`/profile`);
-        }
+        // if (checkGroupName) {
+        //   req.flash("groupCreateError", `The group name ${req.body.groupName} is already taken`);
+        //   return res.redirect(`/profile`);
+        // }
 
         if (user.posts.length == 0) {
           req.flash("noReviewError", `You must have at least one review created before making a group`);
@@ -54,6 +54,7 @@ module.exports = {
           groupDescription: req.body.groupDescription,
           memberCount: 1,
           createdBy: req.user.id,
+          createdByUser: user.userName,
           members: [req.user.id],
           moderators: [req.user.id],
         });

@@ -39,6 +39,11 @@ module.exports = {
   },
   createPost: async (req, res) => {
     try {
+      // See if we can introduce some error handling within this
+      // if(!(req.body.title && req.file.path && req.body.summary && req.body.review && req.body.category && req.body.rating)) {
+      //   req.flash("formNotComplete", `Error! Please ensure all fields of the form are filled`);
+      //   res.redirect("/showCreatePost");
+      // }
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
       console.log(req.body);
