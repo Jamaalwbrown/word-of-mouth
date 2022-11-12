@@ -93,8 +93,29 @@ exports.postSignup = (req, res, next) => {
     image: "https://res.cloudinary.com/demvccuww/image/upload/v1665295544/qr0uwcyxa8z82g8li5eb.jpg",
     cloudinaryId: "qr0uwcyxa8z82g8li5eb",
     summary: "Please Read!! Do Not Delete Until You Have Added Your Own Review",
-    review: `Welcome to Word of Mouth! This review serves as a tutorial for you in how to use this application. Going to 'Profile' in the Navigation Bar at the top will bring you to all your reviews shown as cards.
-    Going to 'Groups' on the navbar at the top will bring you to the group page where you can create groups and see what groups you are a part of. Note: that you must create at least one review in order to create a group`,
+    review: `<h2><strong>Welcome to Word of Mouth! This review serves as a tutorial for you on how to use this application.</strong></h2>
+
+    <p>&nbsp;</p>
+    
+    <p><ins><strong>Accessing Profile</strong></ins></p>
+    
+    <p>Going to &#39;<strong>Profile</strong>&#39; in the Navigation Bar at the top will bring you to all your reviews shown as cards.</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><ins><strong>Accessing Groups</strong></ins></p>
+    
+    <p>Going to &#39;<strong>Groups</strong>&#39; on the navbar at the top will bring you to the group page where you can create groups and see what groups you are a part of. <strong>Note</strong>: that you must create at least one review in order to create a group. You can either keep this example review or create another review and delete this one. Also, any people you try to add to your groups must have a review. Make sure you check with them before adding them</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><ins><strong>Creating Reviews</strong></ins></p>
+    
+    <p>There is a &quot;Create Review&quot; button at the top of your profile page. Clicking on it will bring you to the Create Review page. Here you will fill out the form and click submit in order to create your review. Pay attention to the tips on the page in order to create the perfect review! Once your review is created, a card displaying the title, image, and summary of your review on your profile page</p>
+    
+    <p>&nbsp;</p>
+    
+    <p><ins><strong>Creating a Group</strong></ins></p>`,
     category: "Other",
     rating: "8",
     likes: 0,
