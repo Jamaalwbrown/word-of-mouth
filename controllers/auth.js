@@ -89,7 +89,7 @@ exports.postSignup = (req, res, next) => {
 
 
   const post = new Post({
-    title: "Example Review",
+    title: "Word of Mouth Quick Tutorial",
     image: "https://res.cloudinary.com/demvccuww/image/upload/v1665295544/qr0uwcyxa8z82g8li5eb.jpg",
     cloudinaryId: "qr0uwcyxa8z82g8li5eb",
     summary: "Please Read!! Do Not Delete Until You Have Added Your Own Review",
@@ -99,7 +99,7 @@ exports.postSignup = (req, res, next) => {
     
     <p><ins><strong>Accessing Profile</strong></ins></p>
     
-    <p>Going to &#39;<strong>Profile</strong>&#39; in the Navigation Bar at the top will bring you to all your reviews shown as cards.</p>
+    <p>Going to &#39;<strong>Profile</strong>&#39; in the Navigation Bar at the top will bring you your profile page. Here, you will see important profile information such as your email and username. You will also see two buttons for creating a review and a group as well as all of the reviews you have created so far. Each review will be shown as card with important information about each review such as title, summary, category, and rating. If you would like to delete your account, the button for that is at the bottom of the profile page.</p>
     
     <p>&nbsp;</p>
     
@@ -111,11 +111,19 @@ exports.postSignup = (req, res, next) => {
     
     <p><ins><strong>Creating Reviews</strong></ins></p>
     
-    <p>There is a &quot;Create Review&quot; button at the top of your profile page. Clicking on it will bring you to the Create Review page. Here you will fill out the form and click submit in order to create your review. Pay attention to the tips on the page in order to create the perfect review! Once your review is created, a card displaying the title, image, and summary of your review on your profile page</p>
+    <p>There is a &#39;<strong>Create Review</strong>&#39; button at the top of your profile page. Clicking on it will bring you to the Create Review page. Here you will fill out the form and click submit in order to create your review. Pay attention to the tips on the page in order to create the perfect review! Once your review is created, a card displaying the title, image, and summary of your review will appear on your profile page</p>
     
     <p>&nbsp;</p>
     
-    <p><ins><strong>Creating a Group</strong></ins></p>`,
+    <p><ins><strong>Creating a Group</strong></ins></p>
+    
+    <p>From the groups page, you will be able to fill out a form including the name of your group and a small description. Once you submit the form, your group will be created and you will be taken to the group page. As the original creator of the group you are a moderator have full control over the group and it&rsquo;s members. You may choose who to add to the group, who to remove from the group, who to make a moderator or who to remove moderator status from. <strong>Note: Other moderators will not be able to remove your moderator status since you are the original creator of the group.</strong></p>
+    
+    <p>&nbsp;</p>
+    
+    <p><ins><strong>Group Page</strong></ins></p>
+    
+    <p>As you add people to your group, the page will populate with the most recent created or updated review from each member. In the table you will be able to see each member of the group, their number of reviews, and their moderator status.</p>`,
     category: "Other",
     rating: "8",
     likes: 0,
@@ -170,6 +178,7 @@ exports.deleteAcct = (req, res) => {
     req.flash("deleteFail", "The credentials you entered were incorrect. Try again");
     return res.redirect('/getDeleteAcct');
   }
+  
   User.deleteOne(
     { $and: [{ email: req.body.email }, { userName: req.body.userName }] },
     (err) => {

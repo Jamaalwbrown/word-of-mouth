@@ -60,7 +60,8 @@ exports.recover = (req, res) => {
                           return res.status(500).json({message: err.message});
                         } else {
                           console.log("Email sent successfully");
-                          res.status(200).json({message: 'A reset email has been sent to ' + user.email + '.'});
+                          req.flash('emailSuccess', 'A reset email has been sent to ' + user.email + '.')
+                          res.redirect('/reset')
                         }
                       });
                 })
@@ -102,7 +103,7 @@ exports.resetPassword = (req, res) => {
     
     if (validationErrors.length) {
         req.flash("errors", validationErrors);
-        return res.redirect("../signup");
+        return res.redirect(`/reset/${req.params.token}`)
     }
 
     User.findOne({resetPasswordToken: req.params.token, resetPasswordExpires: {$gt: Date.now()}})
@@ -130,10 +131,12 @@ exports.resetPassword = (req, res) => {
                 transporter.sendMail(mailOptions, function(err, data) {
                     if (err) {
                       console.log("Error " + err);
-                      return res.status(500).json({message: err.message});
+                      req.flash("resetError", err.message)
+                      return res.redirect(`/reset/${user.resetPasswordToken}`)
                     } else {
                       console.log("Email sent successfully");
-                      res.status(200).json({message: 'Your password has been updated.'});
+                      req.flash("resetSuccess", 'Your password has been updated.')
+                      res.redirect('/login')
                     }
                 });
             });
