@@ -1,6 +1,15 @@
-# [WOM (Word of Mouth)](#)
+# [WOM (Word of Mouth)](https://word-of-mouth.up.railway.app/)
 
 Word of Mouth is a full-stack application in which users can post reviews of whatever they want and share them with close-knit communities like families, friends, or coworkers.
+
+<a href='https://word-of-mouth.up.railway.app/'>
+<img src="public/imgs/word-of-mouth.gif" alt="Word of Mouth" width="100%" />
+</a>
+
+
+## [Access Site Here](https://word-of-mouth.up.railway.app/)
+
+
 
 ## How It's Made:
 
